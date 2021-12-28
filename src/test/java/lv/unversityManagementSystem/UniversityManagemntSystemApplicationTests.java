@@ -1,4 +1,4 @@
-package lv.unversity.University.Managemnt.System;
+package lv.unversityManagementSystem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
