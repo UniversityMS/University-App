@@ -20,11 +20,6 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public Employee addEmployee(Employee employee) {
-        employee.setEmployeeCode(UUID.randomUUID().toString());
-        return employeeRepository.save(employee);
-    }
-
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
@@ -42,4 +37,7 @@ public class EmployeeService {
         employeeRepository.deleteEmployeeById(id);
     }
 
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
+    }
 }

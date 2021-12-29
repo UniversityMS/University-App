@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,9 +35,11 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
-        Employee newEmployee = employeeService.addEmployee(employee);
-        return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
+    public List<Employee> addEmployee(@RequestBody Employee employee){
+        employeeService.save(employee);
+        List<Employee> lst = new ArrayList<>();
+        lst.add(employee);
+        return lst;
     }
 
     @PutMapping("/update")

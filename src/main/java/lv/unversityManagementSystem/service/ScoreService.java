@@ -2,6 +2,7 @@ package lv.unversityManagementSystem.service;
 
 
 import lv.unversityManagementSystem.exception.DataWithThisIdNotFoundException;
+import lv.unversityManagementSystem.model.Employee;
 import lv.unversityManagementSystem.model.Score;
 import lv.unversityManagementSystem.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,6 @@ public class ScoreService {
         this.scoreRepository = scoreRepository;
     }
 
-    public Score addScore(Score score) {
-        score.setScoreCode(UUID.randomUUID().toString());
-        return scoreRepository.save(score);
-    }
-
     public List<Score> getAllScores() {
         return scoreRepository.findAll();
     }
@@ -40,6 +36,10 @@ public class ScoreService {
 
     public void deleteScore(Long id) {
         scoreRepository.deleteScoreById(id);
+    }
+
+    public Score save(Score score) {
+        return scoreRepository.save(score);
     }
 
 }

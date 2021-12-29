@@ -2,6 +2,7 @@ package lv.unversityManagementSystem.service;
 
 
 import lv.unversityManagementSystem.exception.DataWithThisIdNotFoundException;
+import lv.unversityManagementSystem.model.Employee;
 import lv.unversityManagementSystem.model.Event;
 import lv.unversityManagementSystem.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,6 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-    public Event addEvent(Event event) {
-        event.setEventCode(UUID.randomUUID().toString());
-        return eventRepository.save(event);
-    }
-
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
     }
@@ -39,6 +35,10 @@ public class EventService {
 
     public void deleteEvent(Long id) {
         eventRepository.deleteEventById(id);
+    }
+
+    public Event save(Event event) {
+        return eventRepository.save(event);
     }
 
 

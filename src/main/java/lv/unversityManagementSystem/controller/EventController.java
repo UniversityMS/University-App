@@ -1,6 +1,7 @@
 package lv.unversityManagementSystem.controller;
 
 
+import lv.unversityManagementSystem.model.Employee;
 import lv.unversityManagementSystem.model.Event;
 import lv.unversityManagementSystem.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,9 +36,11 @@ public class EventController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Event> addEvent(@RequestBody Event event) {
-        Event newEvent = eventService.addEvent(event);
-        return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
+    public List<Event> addEvent(@RequestBody Event event){
+        eventService.save(event);
+        List<Event> lst = new ArrayList<>();
+        lst.add(event);
+        return lst;
     }
 
     @PutMapping("/update")

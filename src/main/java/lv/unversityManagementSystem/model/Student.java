@@ -34,11 +34,9 @@ public class Student implements Serializable {
     @Column(name = "student_img_url")
     private String studentImgUrl;
 
-    @Column(nullable = false, updatable = false)
-    private String studentCode;
 
     public Student(long id, String firstName, String lastName, long userId, String faculty, long groupId,
-                   String studentDateOfBirth, String studentImgUrl, String studentCode) {
+                   String studentDateOfBirth, String studentImgUrl) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,7 +45,7 @@ public class Student implements Serializable {
         this.groupId = groupId;
         this.studentDateOfBirth = studentDateOfBirth;
         this.studentImgUrl = studentImgUrl;
-        this.studentCode = studentCode;
+
     }
 
     public Student() {
@@ -117,18 +115,11 @@ public class Student implements Serializable {
         this.studentImgUrl = studentImgUrl;
     }
 
-    public String getStudentCode() {
-        return studentCode;
-    }
-
-    public void setStudentCode(String studentCode) {
-        this.studentCode = studentCode;
-    }
 
     @Override
     public String toString() {
         return "Student{" +
-                "studentId=" + id +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userId=" + userId +
@@ -136,7 +127,6 @@ public class Student implements Serializable {
                 ", groupId=" + groupId +
                 ", studentDateOfBirth='" + studentDateOfBirth + '\'' +
                 ", studentImgUrl='" + studentImgUrl + '\'' +
-                ", studentCode='" + studentCode + '\'' +
                 '}';
     }
 }

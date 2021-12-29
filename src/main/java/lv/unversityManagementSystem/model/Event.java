@@ -21,18 +21,16 @@ public class Event implements Serializable {
     @Column(name = "description")
     private String eventDescription;
 
-    @Column(nullable = false, updatable = false)
-    private String eventCode;
+
 
     public Event() {
     }
 
-    public Event(long id, String eventDate, String eventName, String eventDescription, String eventCode) {
+    public Event(long id, String eventDate, String eventName, String eventDescription) {
         this.id = id;
         this.eventDate = eventDate;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
-        this.eventCode = eventCode;
     }
 
     public long getEventId() {
@@ -67,22 +65,14 @@ public class Event implements Serializable {
         this.eventDescription = eventDescription;
     }
 
-    public String getEventCode() {
-        return eventCode;
-    }
-
-    public void setEventCode(String eventCode) {
-        this.eventCode = eventCode;
-    }
 
     @Override
     public String toString() {
         return "Event{" +
-                "eventId=" + id +
+                "id=" + id +
                 ", eventDate='" + eventDate + '\'' +
                 ", eventName='" + eventName + '\'' +
                 ", eventDescription='" + eventDescription + '\'' +
-                ", eventCode='" + eventCode + '\'' +
                 '}';
     }
 }
