@@ -22,7 +22,7 @@ public class Employee implements Serializable {   //serializable helps to transf
     @Column(name = "position")
     private String position;
 
-    @Column(name = "id")
+    @Column(name = "user_id")
     private long userId;
 
     @Column(name = "date_of_birth")
