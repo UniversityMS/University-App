@@ -26,7 +26,7 @@ public class Student implements Serializable {
     private String faculty;
 
     @Column(name = "group_id")
-    private long groupId;
+    private String groupId;
 
     @Column(name = "date_of_birth")
     private String studentDateOfBirth;
@@ -35,7 +35,7 @@ public class Student implements Serializable {
     private String studentImgUrl;
 
 
-    public Student(long id, String firstName, String lastName, long userId, String faculty, long groupId,
+    public Student(long id, String firstName, String lastName, long userId, String faculty, String groupId,
                    String studentDateOfBirth, String studentImgUrl) {
         this.id = id;
         this.firstName = firstName;
@@ -91,11 +91,11 @@ public class Student implements Serializable {
         this.faculty = faculty;
     }
 
-    public long getGroupId() {
+    public String getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(long groupId) {
+    public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
 
