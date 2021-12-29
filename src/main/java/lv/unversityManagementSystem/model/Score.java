@@ -27,18 +27,15 @@ public class Score implements Serializable {
     @Column(name = "submitted")
     private String submittedDate;
 
-    @Column(nullable = false, updatable = false)
-    private String scoreCode;
 
-    public Score(long id, String subject, long lecturerId, String studentId, int score, String submittedDate,
-                 String scoreCode) {
+
+    public Score(long id, String subject, long lecturerId, String studentId, int score, String submittedDate) {
         this.id = id;
         this.subject = subject;
         this.lecturerId = lecturerId;
         this.studentId = studentId;
         this.score = score;
         this.submittedDate = submittedDate;
-        this.scoreCode = scoreCode;
     }
 
     public Score() {
@@ -91,24 +88,16 @@ public class Score implements Serializable {
         this.submittedDate = submittedDate;
     }
 
-    public String getScoreCode() {
-        return scoreCode;
-    }
-
-    public void setScoreCode(String scoreCode) {
-        this.scoreCode = scoreCode;
-    }
 
     @Override
     public String toString() {
         return "Score{" +
-                "scoreId=" + id +
+                "id=" + id +
                 ", subject='" + subject + '\'' +
                 ", lecturerId=" + lecturerId +
                 ", studentId='" + studentId + '\'' +
                 ", score=" + score +
                 ", submittedDate='" + submittedDate + '\'' +
-                ", scoreCode='" + scoreCode + '\'' +
                 '}';
     }
 }

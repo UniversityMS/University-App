@@ -2,6 +2,7 @@ package lv.unversityManagementSystem.service;
 
 
 import lv.unversityManagementSystem.exception.DataWithThisIdNotFoundException;
+import lv.unversityManagementSystem.model.Employee;
 import lv.unversityManagementSystem.model.Student;
 import lv.unversityManagementSystem.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,6 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Student addStudent(Student student) {
-        student.setStudentCode(UUID.randomUUID().toString());
-        return studentRepository.save(student);
-    }
-
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
@@ -39,6 +35,10 @@ public class StudentService {
 
     public void deleteStudent(Long id) {
         studentRepository.deleteStudentById(id);
+    }
+
+    public Student save(Student student) {
+        return studentRepository.save(student);
     }
 
 }

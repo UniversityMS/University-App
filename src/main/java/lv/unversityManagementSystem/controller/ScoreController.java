@@ -1,6 +1,7 @@
 package lv.unversityManagementSystem.controller;
 
 
+import lv.unversityManagementSystem.model.Employee;
 import lv.unversityManagementSystem.model.Score;
 import lv.unversityManagementSystem.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,9 +36,11 @@ public class ScoreController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Score> addScore(@RequestBody Score score) {
-        Score newScore = scoreService.addScore(score);
-        return new ResponseEntity<>(newScore, HttpStatus.CREATED);
+    public List<Score> addScore(@RequestBody Score score){
+        scoreService.save(score);
+        List<Score> lst = new ArrayList<>();
+        lst.add(score);
+        return lst;
     }
 
     @PutMapping("/update")

@@ -1,6 +1,7 @@
 package lv.unversityManagementSystem.controller;
 
 
+import lv.unversityManagementSystem.model.Employee;
 import lv.unversityManagementSystem.model.Student;
 import lv.unversityManagementSystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,9 +36,11 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Student> addStudent(@RequestBody Student student) {
-        Student newStudent = studentService.addStudent(student);
-        return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
+    public List<Student> addStudent(@RequestBody Student student){
+        studentService.save(student);
+        List<Student> lst = new ArrayList<>();
+        lst.add(student);
+        return lst;
     }
 
     @PutMapping("/update")

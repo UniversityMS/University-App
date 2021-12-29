@@ -21,18 +21,8 @@ public class User implements Serializable {
     @Column(name = "access")
     private String access;
 
-    @Column(nullable = false, updatable = false)
-    private String userCode;
 
     public User() {
-    }
-
-    public User(long id, String username, String password, String access, String userCode) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.access = access;
-        this.userCode = userCode;
     }
 
     public User(long id, String username, String password, String access) {
@@ -41,6 +31,7 @@ public class User implements Serializable {
         this.password = password;
         this.access = access;
     }
+
 
     public long getUserId() {
         return id;
@@ -74,22 +65,13 @@ public class User implements Serializable {
         this.access = access;
     }
 
-    public String getUserCode() {
-        return userCode;
-    }
-
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
-    }
-
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + id +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", access='" + access + '\'' +
-                ", userCode='" + userCode + '\'' +
                 '}';
     }
 }

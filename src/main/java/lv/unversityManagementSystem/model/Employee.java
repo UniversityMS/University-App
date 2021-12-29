@@ -31,15 +31,13 @@ public class Employee implements Serializable {   //serializable helps to transf
     @Column(name = "employee_img_url")
     private String employeeImgUrl;
 
-    @Column(nullable = false, updatable = false)
-    private String employeeCode;
 
     public Employee() {
 
     }
 
     public Employee(long id, String firstName, String lastName, String position, long userId,
-                    String employeeDateOfBirth, String employeeImgUrl, String employeeCode) {
+                    String employeeDateOfBirth, String employeeImgUrl) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,7 +45,6 @@ public class Employee implements Serializable {   //serializable helps to transf
         this.userId = userId;
         this.employeeDateOfBirth = employeeDateOfBirth;
         this.employeeImgUrl = employeeImgUrl;
-        this.employeeCode = employeeCode;
     }
 
     public long getEmployeeId() {
@@ -106,25 +103,17 @@ public class Employee implements Serializable {   //serializable helps to transf
         this.employeeImgUrl = employeeImgUrl;
     }
 
-    public String getEmployeeCode() {
-        return employeeCode;
-    }
-
-    public void setEmployeeCode(String employeeCode) {
-        this.employeeCode = employeeCode;
-    }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "employeeId=" + id +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", position='" + position + '\'' +
                 ", userId=" + userId +
                 ", employeeDateOfBirth='" + employeeDateOfBirth + '\'' +
                 ", employeeImgUrl='" + employeeImgUrl + '\'' +
-                ", employeeCode='" + employeeCode + '\'' +
                 '}';
     }
 }
