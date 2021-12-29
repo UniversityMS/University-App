@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
     void deleteEventById(Long id);
+
     Optional<Event> findEventById(Long id);
 }

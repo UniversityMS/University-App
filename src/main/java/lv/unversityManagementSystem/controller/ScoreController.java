@@ -22,35 +22,34 @@ public class ScoreController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Score>> gelAllScores(){
+    public ResponseEntity<List<Score>> gelAllScores() {
         List<Score> scores = scoreService.getAllScores();
         return new ResponseEntity<>(scores, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Score> getScoreById (@PathVariable("id") Long id){
-        Score score= scoreService.findScoreById(id);
+    public ResponseEntity<Score> getScoreById(@PathVariable("id") Long id) {
+        Score score = scoreService.findScoreById(id);
         return new ResponseEntity<>(score, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Score> addScore(@RequestBody Score score){
+    public ResponseEntity<Score> addScore(@RequestBody Score score) {
         Score newScore = scoreService.addScore(score);
         return new ResponseEntity<>(newScore, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Score> updateScore(@RequestBody Score score){
+    public ResponseEntity<Score> updateScore(@RequestBody Score score) {
         Score updateScore = scoreService.updateScore(score);
         return new ResponseEntity<>(updateScore, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteScore(@PathVariable("id") Long id){
+    public ResponseEntity<?> deleteScore(@PathVariable("id") Long id) {
         scoreService.deleteScore(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
 
 }

@@ -9,8 +9,8 @@ public class Score implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private long scoreId;
+    //@Column(name = "id", nullable = false, updatable = false)
+    private long id;
 
     @Column(name = "subject")
     private String subject;
@@ -30,9 +30,9 @@ public class Score implements Serializable {
     @Column(nullable = false, updatable = false)
     private String scoreCode;
 
-    public Score(long scoreId, String subject, long lecturerId, String studentId, int score, String submittedDate,
+    public Score(long id, String subject, long lecturerId, String studentId, int score, String submittedDate,
                  String scoreCode) {
-        this.scoreId = scoreId;
+        this.id = id;
         this.subject = subject;
         this.lecturerId = lecturerId;
         this.studentId = studentId;
@@ -45,11 +45,11 @@ public class Score implements Serializable {
     }
 
     public long getScoreId() {
-        return scoreId;
+        return id;
     }
 
-    public void setScoreId(long scoreId) {
-        this.scoreId = scoreId;
+    public void setScoreId(long id) {
+        this.id = id;
     }
     public String getSubject() {
         return subject;
@@ -102,7 +102,7 @@ public class Score implements Serializable {
     @Override
     public String toString() {
         return "Score{" +
-                "scoreId=" + scoreId +
+                "scoreId=" + id +
                 ", subject='" + subject + '\'' +
                 ", lecturerId=" + lecturerId +
                 ", studentId='" + studentId + '\'' +

@@ -9,8 +9,8 @@ public class Event implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private long eventId;
+    //@Column(name = "id", nullable = false, updatable = false)
+    private long id;
 
     @Column(name = "event_date")
     private String eventDate;
@@ -27,8 +27,8 @@ public class Event implements Serializable {
     public Event() {
     }
 
-    public Event(long eventId, String eventDate, String eventName, String eventDescription, String eventCode) {
-        this.eventId = eventId;
+    public Event(long id, String eventDate, String eventName, String eventDescription, String eventCode) {
+        this.id = id;
         this.eventDate = eventDate;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
@@ -36,11 +36,11 @@ public class Event implements Serializable {
     }
 
     public long getEventId() {
-        return eventId;
+        return id;
     }
 
-    public void setEventId(long eventId) {
-        this.eventId = eventId;
+    public void setEventId(long id) {
+        this.id = id;
     }
 
     public String getEventDate() {
@@ -78,7 +78,7 @@ public class Event implements Serializable {
     @Override
     public String toString() {
         return "Event{" +
-                "eventId=" + eventId +
+                "eventId=" + id +
                 ", eventDate='" + eventDate + '\'' +
                 ", eventName='" + eventName + '\'' +
                 ", eventDescription='" + eventDescription + '\'' +

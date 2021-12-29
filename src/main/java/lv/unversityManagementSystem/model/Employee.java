@@ -7,11 +7,11 @@ import java.io.Serializable;
 @Entity
 @Table(name = "employees")
 public class Employee implements Serializable {   //serializable helps to transform this java class into different
-                                                  // type of stream.
+    // type of stream.
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private long employeeId;
+    //@Column(name = "id", nullable = false, updatable = false)
+    private long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -22,7 +22,7 @@ public class Employee implements Serializable {   //serializable helps to transf
     @Column(name = "position")
     private String position;
 
-    @Column(name = "user_id")
+    @Column(name = "id")
     private long userId;
 
     @Column(name = "date_of_birth")
@@ -34,13 +34,13 @@ public class Employee implements Serializable {   //serializable helps to transf
     @Column(nullable = false, updatable = false)
     private String employeeCode;
 
-    public Employee(){
+    public Employee() {
 
     }
 
-    public Employee(long employeeId, String firstName, String lastName, String position, long userId,
+    public Employee(long id, String firstName, String lastName, String position, long userId,
                     String employeeDateOfBirth, String employeeImgUrl, String employeeCode) {
-        this.employeeId = employeeId;
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -51,11 +51,11 @@ public class Employee implements Serializable {   //serializable helps to transf
     }
 
     public long getEmployeeId() {
-        return employeeId;
+        return id;
     }
 
-    public void setEmployeeId(long employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -117,7 +117,7 @@ public class Employee implements Serializable {   //serializable helps to transf
     @Override
     public String toString() {
         return "Employee{" +
-                "employeeId=" + employeeId +
+                "employeeId=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", position='" + position + '\'' +

@@ -10,8 +10,8 @@ public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private long studentId;
+    //@Column(name = "id", nullable = false, updatable = false)
+    private long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -37,9 +37,9 @@ public class Student implements Serializable {
     @Column(nullable = false, updatable = false)
     private String studentCode;
 
-    public Student(long studentId, String firstName, String lastName, long userId, String faculty, long groupId,
+    public Student(long id, String firstName, String lastName, long userId, String faculty, long groupId,
                    String studentDateOfBirth, String studentImgUrl, String studentCode) {
-        this.studentId = studentId;
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userId = userId;
@@ -54,11 +54,11 @@ public class Student implements Serializable {
     }
 
     public long getStudentId() {
-        return studentId;
+        return id;
     }
 
-    public void setStudentId(long studentId) {
-        this.studentId = studentId;
+    public void setStudentId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -128,7 +128,7 @@ public class Student implements Serializable {
     @Override
     public String toString() {
         return "Student{" +
-                "studentId=" + studentId +
+                "studentId=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userId=" + userId +

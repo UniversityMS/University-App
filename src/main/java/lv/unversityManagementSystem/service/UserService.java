@@ -6,6 +6,7 @@ import lv.unversityManagementSystem.model.User;
 import lv.unversityManagementSystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -19,25 +20,25 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User addUser(User user){
+    public User addUser(User user) {
         user.setUserCode(UUID.randomUUID().toString());
         return userRepository.save(user);
     }
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public User updateUser(User user){
+    public User updateUser(User user) {
         return userRepository.save(user);
     }
 
-    public User findUserById(Long id){
+    public User findUserById(Long id) {
         return userRepository.findUserById(id).orElseThrow(() -> new DataWithThisIdNotFoundException("User" +
                 " by id " + id + " was not found!"));
     }
 
-    public void deleteUser(Long id){
+    public void deleteUser(Long id) {
         userRepository.deleteUserById(id);
     }
 

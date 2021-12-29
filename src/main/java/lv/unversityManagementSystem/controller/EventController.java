@@ -22,35 +22,36 @@ public class EventController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Event>> gelAllEvents(){
+    public ResponseEntity<List<Event>> gelAllEvents() {
         List<Event> events = eventService.getAllEvents();
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Event> getEventById (@PathVariable("id") Long id){
+    public ResponseEntity<Event> getEventById(@PathVariable("id") Long id) {
         Event event = eventService.findEventById(id);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Event> addEvent(@RequestBody Event event){
+    public ResponseEntity<Event> addEvent(@RequestBody Event event) {
         Event newEvent = eventService.addEvent(event);
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
     }
+
     @PutMapping("/update")
-    public ResponseEntity<Event> updateEmployee(@RequestBody Event event){
+    public ResponseEntity<Event> updateEmployee(@RequestBody Event event) {
         Event updateEvent = eventService.updateEvent(event);
         return new ResponseEntity<>(updateEvent, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteEvent (@PathVariable("id") Long id){
+    public ResponseEntity<?> deleteEvent(@PathVariable("id") Long id) {
         eventService.deleteEvent(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
-    }
+}
 
 

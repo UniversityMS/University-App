@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface ScoreRepository extends JpaRepository<Score, Long> {
     void deleteScoreById(Long id);
+
     Optional<Score> findScoreById(Long id);
 }
