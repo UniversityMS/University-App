@@ -19,9 +19,6 @@ public class Student implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "user_id")
-    private long userId;
-
     @Column(name = "faculty")
     private String faculty;
 
@@ -34,28 +31,37 @@ public class Student implements Serializable {
     @Column(name = "student_img_url")
     private String studentImgUrl;
 
+    @Column(name = "username")
+    private long username;
 
-    public Student(long id, String firstName, String lastName, long userId, String faculty, String groupId,
-                   String studentDateOfBirth, String studentImgUrl) {
+    @Column(name = "password")
+    private long password;
+
+    @Column(name = "role")
+    private long role;
+
+
+    public Student(long id, String firstName, String lastName, String faculty, String groupId, String studentDateOfBirth, String studentImgUrl, long username, long password, long role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userId = userId;
         this.faculty = faculty;
         this.groupId = groupId;
         this.studentDateOfBirth = studentDateOfBirth;
         this.studentImgUrl = studentImgUrl;
-
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     public Student() {
     }
 
-    public long getStudentId() {
+    public long getId() {
         return id;
     }
 
-    public void setStudentId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -73,14 +79,6 @@ public class Student implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
     }
 
     public String getFaculty() {
@@ -115,6 +113,29 @@ public class Student implements Serializable {
         this.studentImgUrl = studentImgUrl;
     }
 
+    public long getUsername() {
+        return username;
+    }
+
+    public void setUsername(long username) {
+        this.username = username;
+    }
+
+    public long getPassword() {
+        return password;
+    }
+
+    public void setPassword(long password) {
+        this.password = password;
+    }
+
+    public long getRole() {
+        return role;
+    }
+
+    public void setRole(long role) {
+        this.role = role;
+    }
 
     @Override
     public String toString() {
@@ -122,11 +143,13 @@ public class Student implements Serializable {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", userId=" + userId +
                 ", faculty='" + faculty + '\'' +
-                ", groupId=" + groupId +
+                ", groupId='" + groupId + '\'' +
                 ", studentDateOfBirth='" + studentDateOfBirth + '\'' +
                 ", studentImgUrl='" + studentImgUrl + '\'' +
+                ", username=" + username +
+                ", password=" + password +
+                ", role=" + role +
                 '}';
     }
 }

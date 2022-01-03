@@ -22,36 +22,43 @@ public class Employee implements Serializable {   //serializable helps to transf
     @Column(name = "position")
     private String position;
 
-    @Column(name = "user_id")
-    private long userId;
-
     @Column(name = "date_of_birth")
     private String employeeDateOfBirth;
 
     @Column(name = "employee_img_url")
     private String employeeImgUrl;
 
+    @Column(name = "username")
+    private long username;
+
+    @Column(name = "password")
+    private long password;
+
+    @Column(name = "role")
+    private long role;
+
 
     public Employee() {
 
     }
 
-    public Employee(long id, String firstName, String lastName, String position, long userId,
-                    String employeeDateOfBirth, String employeeImgUrl) {
+    public Employee(long id, String firstName, String lastName, String position, String employeeDateOfBirth, String employeeImgUrl, long username, long password, long role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
-        this.userId = userId;
         this.employeeDateOfBirth = employeeDateOfBirth;
         this.employeeImgUrl = employeeImgUrl;
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
-    public long getEmployeeId() {
+    public long getId() {
         return id;
     }
 
-    public void setEmployeeId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -79,14 +86,6 @@ public class Employee implements Serializable {   //serializable helps to transf
         this.position = position;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
     public String getEmployeeDateOfBirth() {
         return employeeDateOfBirth;
     }
@@ -103,6 +102,29 @@ public class Employee implements Serializable {   //serializable helps to transf
         this.employeeImgUrl = employeeImgUrl;
     }
 
+    public long getUsername() {
+        return username;
+    }
+
+    public void setUsername(long username) {
+        this.username = username;
+    }
+
+    public long getPassword() {
+        return password;
+    }
+
+    public void setPassword(long password) {
+        this.password = password;
+    }
+
+    public long getRole() {
+        return role;
+    }
+
+    public void setRole(long role) {
+        this.role = role;
+    }
 
     @Override
     public String toString() {
@@ -111,9 +133,11 @@ public class Employee implements Serializable {   //serializable helps to transf
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", position='" + position + '\'' +
-                ", userId=" + userId +
                 ", employeeDateOfBirth='" + employeeDateOfBirth + '\'' +
                 ", employeeImgUrl='" + employeeImgUrl + '\'' +
+                ", username=" + username +
+                ", password=" + password +
+                ", role=" + role +
                 '}';
     }
 }
