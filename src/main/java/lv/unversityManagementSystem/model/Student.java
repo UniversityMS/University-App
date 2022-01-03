@@ -32,16 +32,16 @@ public class Student implements Serializable {
     private String studentImgUrl;
 
     @Column(name = "username")
-    private long username;
+    private String username;
 
     @Column(name = "password")
-    private long password;
+    private String password;
 
     @Column(name = "role")
-    private long role;
+    private String role;
 
 
-    public Student(long id, String firstName, String lastName, String faculty, String groupId, String studentDateOfBirth, String studentImgUrl, long username, long password, long role) {
+    public Student(long id, String firstName, String lastName, String faculty, String groupId, String studentDateOfBirth, String studentImgUrl, String username, String password, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -113,27 +113,27 @@ public class Student implements Serializable {
         this.studentImgUrl = studentImgUrl;
     }
 
-    public long getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(long username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public long getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(long password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public long getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(long role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

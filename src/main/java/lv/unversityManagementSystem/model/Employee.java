@@ -29,20 +29,20 @@ public class Employee implements Serializable {   //serializable helps to transf
     private String employeeImgUrl;
 
     @Column(name = "username")
-    private long username;
+    private String username;
 
     @Column(name = "password")
-    private long password;
+    private String password;
 
     @Column(name = "role")
-    private long role;
+    private String role;
 
 
     public Employee() {
 
     }
 
-    public Employee(long id, String firstName, String lastName, String position, String employeeDateOfBirth, String employeeImgUrl, long username, long password, long role) {
+    public Employee(long id, String firstName, String lastName, String position, String employeeDateOfBirth, String employeeImgUrl, String username, String password, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -102,27 +102,27 @@ public class Employee implements Serializable {   //serializable helps to transf
         this.employeeImgUrl = employeeImgUrl;
     }
 
-    public long getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(long username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public long getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(long password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public long getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(long role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
