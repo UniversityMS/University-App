@@ -2,6 +2,7 @@ package lv.unversityManagementSystem.controller;
 
 
 import lv.unversityManagementSystem.login.PasswordGeneration;
+import lv.unversityManagementSystem.login.UsernameGeneration;
 import lv.unversityManagementSystem.model.Employee;
 import lv.unversityManagementSystem.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +38,15 @@ public class EmployeeController {
 
     @PostMapping("/add")
     public List<Employee> addEmployee(@RequestBody Employee employee){
+        employee.setUsername(UsernameGeneration.getUsername(employee));
+        employee.setPassword(PasswordGeneration.generateRandomPassword(10));
+        //employee.setRole("lecturer");
         employeeService.save(employee);
         List<Employee> lst = new ArrayList<>();
         lst.add(employee);
         return lst;
     }
-
+//String login = name.substring(0, 3) + surname.substring(0, 3) + employeesID;
     @PutMapping("/update")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
         Employee updateEmployee = employeeService.updateEmployee(employee);
