@@ -38,9 +38,9 @@ public class EmployeeController {
 
     @PostMapping("/add")
     public List<Employee> addEmployee(@RequestBody Employee employee) {
-        employee.setUsername(UsernameGeneration.getUsername(employee));
+        employee.setUsername(UsernameGeneration.getEmployeeUsername(employee));
         employee.setPassword(PasswordGeneration.generateRandomPassword(10));
-        //employee.setRole("lecturer");
+        employee.setRole("lecturer");
         employeeService.save(employee);
         List<Employee> lst = new ArrayList<>();
         lst.add(employee);

@@ -10,7 +10,7 @@ public class Employee implements Serializable {   //serializable helps to transf
     // type of stream.
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
     @Column(name = "first_name")
@@ -18,9 +18,6 @@ public class Employee implements Serializable {   //serializable helps to transf
 
     @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "position")
-    private String position;
 
     @Column(name = "date_of_birth")
     private String employeeDateOfBirth;
@@ -42,11 +39,10 @@ public class Employee implements Serializable {   //serializable helps to transf
 
     }
 
-    public Employee(long id, String firstName, String lastName, String position, String employeeDateOfBirth, String employeeImgUrl, String username, String password, String role) {
+    public Employee(long id, String firstName, String lastName, String employeeDateOfBirth, String employeeImgUrl, String username, String password, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.position = position;
         this.employeeDateOfBirth = employeeDateOfBirth;
         this.employeeImgUrl = employeeImgUrl;
         this.username = username;
@@ -76,14 +72,6 @@ public class Employee implements Serializable {   //serializable helps to transf
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public String getEmployeeDateOfBirth() {
@@ -132,7 +120,6 @@ public class Employee implements Serializable {   //serializable helps to transf
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", position='" + position + '\'' +
                 ", employeeDateOfBirth='" + employeeDateOfBirth + '\'' +
                 ", employeeImgUrl='" + employeeImgUrl + '\'' +
                 ", username=" + username +
