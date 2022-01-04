@@ -36,7 +36,7 @@ public class ScoreController {
     }
 
     @PostMapping("/add")
-    public List<Score> addScore(@RequestBody Score score){
+    public List<Score> addScore(@RequestBody Score score) {
         scoreService.save(score);
         List<Score> lst = new ArrayList<>();
         lst.add(score);
@@ -54,6 +54,4 @@ public class ScoreController {
         scoreService.deleteScore(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 }

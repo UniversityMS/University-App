@@ -37,7 +37,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public List<Employee> addEmployee(@RequestBody Employee employee){
+    public List<Employee> addEmployee(@RequestBody Employee employee) {
         employee.setUsername(UsernameGeneration.getUsername(employee));
         employee.setPassword(PasswordGeneration.generateRandomPassword(10));
         //employee.setRole("lecturer");
@@ -46,7 +46,7 @@ public class EmployeeController {
         lst.add(employee);
         return lst;
     }
-//String login = name.substring(0, 3) + surname.substring(0, 3) + employeesID;
+
     @PutMapping("/update")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
         Employee updateEmployee = employeeService.updateEmployee(employee);
