@@ -35,9 +35,12 @@ public class Student implements Serializable {
     private String password;
 
     @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public Student(long id, String firstName, String lastName, String faculty, String studentDateOfBirth, String studentImgUrl, String username, String password, String role) {
+
+    public Student(long id, String firstName, String lastName, String faculty, String studentDateOfBirth,
+                   String studentImgUrl, String username, String password, Role role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -116,11 +119,11 @@ public class Student implements Serializable {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

@@ -32,14 +32,16 @@ public class Employee implements Serializable {   //serializable helps to transf
     private String password;
 
     @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 
     public Employee() {
 
     }
 
-    public Employee(long id, String firstName, String lastName, String employeeDateOfBirth, String employeeImgUrl, String username, String password, String role) {
+    public Employee(long id, String firstName, String lastName, String employeeDateOfBirth, String employeeImgUrl,
+                    String username, String password, Role role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -106,11 +108,11 @@ public class Employee implements Serializable {   //serializable helps to transf
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

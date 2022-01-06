@@ -4,6 +4,7 @@ package lv.unversityManagementSystem.controller;
 import lv.unversityManagementSystem.login.PasswordGeneration;
 import lv.unversityManagementSystem.login.UsernameGeneration;
 import lv.unversityManagementSystem.model.Employee;
+import lv.unversityManagementSystem.model.Role;
 import lv.unversityManagementSystem.model.Student;
 import lv.unversityManagementSystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class StudentController {
     public List<Student> addStudent(@RequestBody Student student){
         student.setUsername(UsernameGeneration.getStudentUsername(student));
         student.setPassword(PasswordGeneration.generateRandomPassword(10));
-        student.setRole("student");
+        student.setRole(Role.STUDENT);
         studentService.save(student);
         List<Student> lst = new ArrayList<>();
         lst.add(student);
