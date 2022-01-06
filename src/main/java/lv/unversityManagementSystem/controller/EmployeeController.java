@@ -4,6 +4,7 @@ package lv.unversityManagementSystem.controller;
 import lv.unversityManagementSystem.login.PasswordGeneration;
 import lv.unversityManagementSystem.login.UsernameGeneration;
 import lv.unversityManagementSystem.model.Employee;
+import lv.unversityManagementSystem.model.Role;
 import lv.unversityManagementSystem.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,7 @@ public class EmployeeController {
     public List<Employee> addEmployee(@RequestBody Employee employee) {
         employee.setUsername(UsernameGeneration.getEmployeeUsername(employee));
         employee.setPassword(PasswordGeneration.generateRandomPassword(10));
-        employee.setRole("lecturer");
+        employee.setRole(Role.LECTURER);
         employeeService.save(employee);
         List<Employee> lst = new ArrayList<>();
         lst.add(employee);
