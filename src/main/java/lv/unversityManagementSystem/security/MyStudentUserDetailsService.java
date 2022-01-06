@@ -1,8 +1,8 @@
 package lv.unversityManagementSystem.security;
 
-import lv.unversityManagementSystem.security.MyEmployeeUserDetails;
 import lv.unversityManagementSystem.model.Employee;
-import lv.unversityManagementSystem.repository.EmployeeRepository;
+import lv.unversityManagementSystem.model.Student;
+import lv.unversityManagementSystem.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -15,20 +15,18 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@Primary
-
-public class MyEmployeeUserDetailsService implements UserDetailsService {
+//@Primary
+public class MyStudentUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private StudentRepository studentRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Employee> employee = employeeRepository.findByUsername(username);
+        Optional<Student> student = studentRepository.findByUsername(username);
 
-        employee.orElseThrow(() -> new UsernameNotFoundException("Invalid username: " + username));
+        student.orElseThrow(() -> new UsernameNotFoundException("Invalid username: " + username));
 
-        return employee.map(MyEmployeeUserDetails::new).get();
-        //new MyEmployeeUserDetails(employee);
+        return student.map(MyStudentUserDetails::new).get();
     }
 }

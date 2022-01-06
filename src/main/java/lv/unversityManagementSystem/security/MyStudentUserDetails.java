@@ -2,31 +2,26 @@ package lv.unversityManagementSystem.security;
 
 import lv.unversityManagementSystem.model.Employee;
 import lv.unversityManagementSystem.model.Role;
+import lv.unversityManagementSystem.model.Student;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
-
-public class MyEmployeeUserDetails implements UserDetails {
-
+public class MyStudentUserDetails implements UserDetails {
     private String username;
     private String password;
     private Role role;
-    private Optional<Employee> employee;
+    private Optional<Student> student;
 
-    public MyEmployeeUserDetails(Employee employeeUser) {
-        this.username = employeeUser.getUsername();
-        this.password = employeeUser.getPassword();
-        this.role = employeeUser.getRole();
+    public MyStudentUserDetails(Student studentUser) {
+        this.username = studentUser.getUsername();
+        this.password = studentUser.getPassword();
+        this.role = studentUser.getRole();
     }
-//    public MyEmployeeUserDetails(Optional<Employee> employee){
-//        this.employee = employee;
-//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -42,12 +37,12 @@ public class MyEmployeeUserDetails implements UserDetails {
         this.role = role;
     }
 
-    public Optional<Employee> getEmployee() {
-        return employee;
+    public Optional<Student> getStudent() {
+        return student;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = Optional.ofNullable(employee);
+    public void setEmployee(Student student) {
+        this.student = Optional.ofNullable(student);
     }
 
     @Override
