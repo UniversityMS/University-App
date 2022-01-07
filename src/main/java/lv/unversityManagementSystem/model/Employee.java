@@ -35,7 +35,6 @@ public class Employee implements Serializable {   //serializable helps to transf
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
     public Employee() {
 
     }
