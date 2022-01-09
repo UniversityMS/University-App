@@ -1,6 +1,9 @@
 package lv.unversityManagementSystem.model;
 
 
+import org.hibernate.annotations.ColumnTransformer;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -33,6 +36,7 @@ public class Employee implements Serializable {   //serializable helps to transf
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
+    @ColumnTransformer(read = "UPPER(role)", write = "LOWER(?)")
     private Role role;
 
     public Employee() {
