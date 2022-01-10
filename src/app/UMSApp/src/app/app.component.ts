@@ -1,10 +1,37 @@
-import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError, map, startWith } from 'rxjs/operators';
+import { Employee } from './services/employee';
+import { EmployeesService } from './services/employee.service';
+// import { DataState } from './enum/data-state.enum';
+// import { AppState } from './interface/app-state';
+// import { CustomResponse } from './interface/custom-response';
+// import { ServerService } from './service/server.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'UMSApp';
+export class AppComponent implements OnInit {
+  employees: Employee[];
+
+  constructor(private employeeService: EmployeesService){}
+
+  ngOnInit() {
+    this.getEmployees();
+  }
+
+  public getEmployees(): void {
+    this.employeeService.getEmployees().subscribe(
+      (response: Employee[]) => {
+        this.employees = response;
+        console.log(this.employees);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 }
