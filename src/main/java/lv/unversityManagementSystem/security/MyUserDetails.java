@@ -1,7 +1,8 @@
 package lv.unversityManagementSystem.security;
 
-import lv.unversityManagementSystem.model.Employee;
+
 import lv.unversityManagementSystem.model.Role;
+import lv.unversityManagementSystem.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,17 +13,17 @@ import java.util.Collections;
 import java.util.Optional;
 
 
-public class MyEmployeeUserDetails implements UserDetails {
+public class MyUserDetails implements UserDetails {
 
     private String username;
     private String password;
     private Role role;
-    private Optional<Employee> employee;
+    private Optional<User> user;
 
-    public MyEmployeeUserDetails(Employee employeeUser) {
-        this.username = employeeUser.getUsername();
-        this.password = employeeUser.getPassword();
-        this.role = employeeUser.getRole();
+    public MyUserDetails(User user) {
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.role = user.getRole();
     }
 //    public MyEmployeeUserDetails(Optional<Employee> employee){
 //        this.employee = employee;
@@ -42,12 +43,12 @@ public class MyEmployeeUserDetails implements UserDetails {
         this.role = role;
     }
 
-    public Optional<Employee> getEmployee() {
-        return employee;
+    public Optional<User> getUser() {
+        return user;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = Optional.ofNullable(employee);
+    public void setUser(User user) {
+        this.user = Optional.ofNullable(user);
     }
 
     @Override
