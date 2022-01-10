@@ -4,6 +4,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, startWith } from 'rxjs/operators';
 import { Employee } from './services/employee';
 import { EmployeesService } from './services/employee.service';
+import { Student } from './services/student';
+import { StudentsService } from './services/student.service';
 // import { DataState } from './enum/data-state.enum';
 // import { AppState } from './interface/app-state';
 // import { CustomResponse } from './interface/custom-response';
@@ -16,11 +18,14 @@ import { EmployeesService } from './services/employee.service';
 })
 export class AppComponent implements OnInit {
   employees: Employee[];
+  students: Student[];
 
-  constructor(private employeeService: EmployeesService){}
+  constructor(private employeeService: EmployeesService, private studentService: StudentsService){}
+  //constructor(private studentService: StudentsService){}
 
   ngOnInit() {
     this.getEmployees();
+    this.getStudents();
   }
 
   public getEmployees(): void {
@@ -28,6 +33,18 @@ export class AppComponent implements OnInit {
       (response: Employee[]) => {
         this.employees = response;
         console.log(this.employees);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public getStudents(): void {
+    this.studentService.getStudents().subscribe(
+      (response: Student[]) => {
+        this.students = response;
+        console.log(this.students);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
