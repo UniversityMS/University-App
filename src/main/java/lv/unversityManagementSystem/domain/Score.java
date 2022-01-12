@@ -9,16 +9,16 @@ public class Score implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "score_id", nullable = false, updatable = false)
     private long id;
 
     @Column(name = "subject")
     private String subject;
 
-    @Column(name = "employee")
+    @Column(name = "employee_id")
     private long employee;
 
-    @Column(name = "student")
+    @Column(name = "student_id")
     private String student;
 
     @Column(name = "score")
