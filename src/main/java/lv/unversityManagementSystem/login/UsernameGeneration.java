@@ -1,22 +1,21 @@
 package lv.unversityManagementSystem.login;
 
-import lv.unversityManagementSystem.model.Employee;
-import lv.unversityManagementSystem.model.Student;
-import lv.unversityManagementSystem.model.User;
-import org.springframework.web.bind.annotation.PathVariable;
+import lv.unversityManagementSystem.domain.Employee;
+import lv.unversityManagementSystem.domain.Student;
+import lv.unversityManagementSystem.domain.User;
 
 import java.util.Random;
 
 public class UsernameGeneration {
 
     public static String getEmployeeUsername(Employee employee) {
-        return employee.getFirstName().substring(0, 3)
-                + employee.getLastName().substring(0, 3) + getRandomNumberString();
+        return employee.getName().substring(0, 3)
+                + employee.getSurname().substring(0, 3) + getRandomNumberString();
     }
 
     public static String getStudentUsername(Student student) {
-        return student.getFirstName().substring(0, 3)
-                + student.getLastName().substring(0, 3) + getRandomNumberString();
+        return student.getName().substring(0, 3)
+                + student.getSurname().substring(0, 3) + getRandomNumberString();
     }
 
     public static String getUserUsername(User user) {

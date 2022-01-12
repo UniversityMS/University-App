@@ -1,7 +1,7 @@
 package lv.unversityManagementSystem.security;
 
-import lv.unversityManagementSystem.model.Employee;
-import lv.unversityManagementSystem.model.User;
+import lv.unversityManagementSystem.domain.Employee;
+import lv.unversityManagementSystem.domain.User;
 import lv.unversityManagementSystem.repository.EmployeeRepository;
 import lv.unversityManagementSystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +18,15 @@ import java.util.Optional;
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private EmployeeRepository employeeRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByUsername(username);
+        Optional<Employee> employee = employeeRepository.findByUsername(username);
 
-        user.orElseThrow(() -> new UsernameNotFoundException("Invalid username: " + username));
+        employee.orElseThrow(() -> new UsernameNotFoundException("Invalid username: " + username));
 
-        return user.map(MyUserDetails::new).get();
-        //new MyEmployeeUserDetails(employee);
+        employee.map(MyUserDetails::new).get();
+        return employee.map(MyUserDetails::new).get();
     }
 }

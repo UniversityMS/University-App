@@ -2,14 +2,12 @@ package lv.unversityManagementSystem.service;
 
 
 import lv.unversityManagementSystem.exception.DataWithThisIdNotFoundException;
-import lv.unversityManagementSystem.model.Employee;
-import lv.unversityManagementSystem.model.User;
+import lv.unversityManagementSystem.domain.User;
 import lv.unversityManagementSystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 
 @Service

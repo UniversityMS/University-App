@@ -1,4 +1,4 @@
-package lv.unversityManagementSystem.model;
+package lv.unversityManagementSystem.domain;
 
 public enum Role {
     ADMIN, LECTURER, STUDENT

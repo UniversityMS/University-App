@@ -1,8 +1,10 @@
 package lv.unversityManagementSystem;
 
+import lv.unversityManagementSystem.repository.EmployeeRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -12,6 +14,7 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @EnableWebSecurity
+@EnableJpaRepositories(basePackageClasses = EmployeeRepository.class)
 public class  UniversityManagementSystemApplication {
 
     public static void main(String[] args) {

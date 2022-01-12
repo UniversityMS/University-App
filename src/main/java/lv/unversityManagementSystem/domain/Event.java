@@ -1,4 +1,4 @@
-package lv.unversityManagementSystem.model;
+package lv.unversityManagementSystem.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,13 +9,13 @@ public class Event implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
-    @Column(name = "event_date")
-    private String eventDate;
+    @Column(name = "date")
+    private String date;
 
-    @Column(name = "event_name")
+    @Column(name = "name")
     private String eventName;
 
     @Column(name = "description")
@@ -26,27 +26,27 @@ public class Event implements Serializable {
     public Event() {
     }
 
-    public Event(long id, String eventDate, String eventName, String eventDescription) {
+    public Event(long id, String date, String eventName, String eventDescription) {
         this.id = id;
-        this.eventDate = eventDate;
+        this.date = date;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
     }
 
-    public long getEventId() {
+    public long getId() {
         return id;
     }
 
-    public void setEventId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getEventDate() {
-        return eventDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getEventName() {
@@ -65,12 +65,11 @@ public class Event implements Serializable {
         this.eventDescription = eventDescription;
     }
 
-
     @Override
     public String toString() {
         return "Event{" +
                 "id=" + id +
-                ", eventDate='" + eventDate + '\'' +
+                ", date='" + date + '\'' +
                 ", eventName='" + eventName + '\'' +
                 ", eventDescription='" + eventDescription + '\'' +
                 '}';

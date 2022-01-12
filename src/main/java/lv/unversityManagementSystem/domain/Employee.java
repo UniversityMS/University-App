@@ -1,4 +1,5 @@
-package lv.unversityManagementSystem.model;
+package lv.unversityManagementSystem.domain;
+
 
 import org.hibernate.annotations.ColumnTransformer;
 
@@ -6,13 +7,25 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "users")
-public class User implements Serializable {
-
+@Table(name = "employees")
+public class Employee implements Serializable {   //serializable helps to transform this java class into different
+    // type of stream.
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "date_of_birth")
+    private String dateOfBirth;
+
+    @Column(name = "img_url")
+    private String imgUrl;
 
     @Column(name = "username")
     private String username;
@@ -25,31 +38,19 @@ public class User implements Serializable {
     @ColumnTransformer(read = "UPPER(role)", write = "LOWER(?)")
     private Role role;
 
-    @Column(name = "name")
-    private String name;
+    public Employee() {
 
-    @Column(name = "surname")
-    private String surname;
-
-    @Column(name = "date_of_birth")
-    private String dateOfBirth;
-
-    @Column(name = "employee_img_url")
-    private String ImgUrl;
-
-
-    public User() {
     }
 
-    public User(long id, String username, String password, Role role, String name, String surname, String dateOfBirth, String imgUrl) {
+    public Employee(long id, String name, String surname, String dateOfBirth, String imgUrl, String username, String password, Role role) {
         this.id = id;
-        this.username = username;
-        this.password = password;
-        this.role = role;
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
-        ImgUrl = imgUrl;
+        this.imgUrl = imgUrl;
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     public long getId() {
@@ -58,30 +59,6 @@ public class User implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public String getName() {
@@ -109,24 +86,48 @@ public class User implements Serializable {
     }
 
     public String getImgUrl() {
-        return ImgUrl;
+        return imgUrl;
     }
 
     public void setImgUrl(String imgUrl) {
-        ImgUrl = imgUrl;
+        this.imgUrl = imgUrl;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Employee{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", ImgUrl='" + ImgUrl + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

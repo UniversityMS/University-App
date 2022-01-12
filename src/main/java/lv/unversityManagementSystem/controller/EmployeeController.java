@@ -3,8 +3,8 @@ package lv.unversityManagementSystem.controller;
 
 import lv.unversityManagementSystem.login.PasswordGeneration;
 import lv.unversityManagementSystem.login.UsernameGeneration;
-import lv.unversityManagementSystem.model.Employee;
-import lv.unversityManagementSystem.model.Role;
+import lv.unversityManagementSystem.domain.Employee;
+import lv.unversityManagementSystem.domain.Role;
 import lv.unversityManagementSystem.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
