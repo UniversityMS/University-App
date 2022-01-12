@@ -2,14 +2,12 @@ package lv.unversityManagementSystem.service;
 
 
 import lv.unversityManagementSystem.exception.DataWithThisIdNotFoundException;
-import lv.unversityManagementSystem.model.Employee;
-import lv.unversityManagementSystem.model.Event;
+import lv.unversityManagementSystem.domain.Event;
 import lv.unversityManagementSystem.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class EventService {

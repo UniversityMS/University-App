@@ -1,8 +1,7 @@
 package lv.unversityManagementSystem.controller;
 
 
-import lv.unversityManagementSystem.model.Employee;
-import lv.unversityManagementSystem.model.Score;
+import lv.unversityManagementSystem.domain.Score;
 import lv.unversityManagementSystem.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

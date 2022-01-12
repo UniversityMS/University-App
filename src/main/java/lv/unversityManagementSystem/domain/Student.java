@@ -1,8 +1,7 @@
-package lv.unversityManagementSystem.model;
+package lv.unversityManagementSystem.domain;
 
 
 import org.hibernate.annotations.ColumnTransformer;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,20 +14,20 @@ public class Student implements Serializable {
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "surname")
+    private String surname;
 
     @Column(name = "faculty")
     private String faculty;
 
     @Column(name = "date_of_birth")
-    private String studentDateOfBirth;
+    private String dateOfBirth;
 
-    @Column(name = "student_img_url")
-    private String studentImgUrl;
+    @Column(name = "img_url")
+    private String imgUrl;
 
     @Column(name = "username")
     private String username;
@@ -42,14 +41,14 @@ public class Student implements Serializable {
     private Role role;
 
 
-    public Student(long id, String firstName, String lastName, String faculty, String studentDateOfBirth,
-                   String studentImgUrl, String username, String password, Role role) {
+    public Student(long id, String name, String surname, String faculty, String dateOfBirth, String imgUrl,
+                   String username, String password, Role role) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
+        this.surname = surname;
         this.faculty = faculty;
-        this.studentDateOfBirth = studentDateOfBirth;
-        this.studentImgUrl = studentImgUrl;
+        this.dateOfBirth = dateOfBirth;
+        this.imgUrl = imgUrl;
         this.username = username;
         this.password = password;
         this.role = role;
@@ -66,20 +65,20 @@ public class Student implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getFaculty() {
@@ -90,20 +89,20 @@ public class Student implements Serializable {
         this.faculty = faculty;
     }
 
-    public String getStudentDateOfBirth() {
-        return studentDateOfBirth;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setStudentDateOfBirth(String studentDateOfBirth) {
-        this.studentDateOfBirth = studentDateOfBirth;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getStudentImgUrl() {
-        return studentImgUrl;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setStudentImgUrl(String studentImgUrl) {
-        this.studentImgUrl = studentImgUrl;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getUsername() {
@@ -134,13 +133,13 @@ public class Student implements Serializable {
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", faculty='" + faculty + '\'' +
-                ", studentDateOfBirth='" + studentDateOfBirth + '\'' +
-                ", studentImgUrl='" + studentImgUrl + '\'' +
-                ", username=" + username +
-                ", password=" + password +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
     }

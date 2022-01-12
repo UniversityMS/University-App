@@ -1,8 +1,7 @@
 package lv.unversityManagementSystem.controller;
 
 
-import lv.unversityManagementSystem.model.Employee;
-import lv.unversityManagementSystem.model.Event;
+import lv.unversityManagementSystem.domain.Event;
 import lv.unversityManagementSystem.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

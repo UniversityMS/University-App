@@ -1,7 +1,5 @@
 package lv.unversityManagementSystem.login;
 
-import lv.unversityManagementSystem.model.Employee;
-
 import java.util.Random;
 
 public class PasswordGeneration {

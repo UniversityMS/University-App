@@ -1,8 +1,6 @@
 package lv.unversityManagementSystem.repository;
 
-import lv.unversityManagementSystem.model.Score;
-import lv.unversityManagementSystem.model.Student;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lv.unversityManagementSystem.domain.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,7 @@
 package lv.unversityManagementSystem.repository;
 
 
-import lv.unversityManagementSystem.model.Employee;
-import lv.unversityManagementSystem.model.Event;
+import lv.unversityManagementSystem.domain.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -4,8 +4,7 @@ package lv.unversityManagementSystem.controller;
 
 import lv.unversityManagementSystem.login.PasswordGeneration;
 import lv.unversityManagementSystem.login.UsernameGeneration;
-import lv.unversityManagementSystem.model.Role;
-import lv.unversityManagementSystem.model.User;
+import lv.unversityManagementSystem.domain.User;
 import lv.unversityManagementSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

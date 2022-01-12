@@ -1,8 +1,7 @@
 package lv.unversityManagementSystem.repository;
 
 
-import lv.unversityManagementSystem.model.Employee;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lv.unversityManagementSystem.domain.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
