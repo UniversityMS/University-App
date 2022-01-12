@@ -12,7 +12,7 @@ public class Employee implements Serializable {   //serializable helps to transf
     // type of stream.
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "employee_id", nullable = false, updatable = false)
     private long id;
 
     @Column(name = "name")

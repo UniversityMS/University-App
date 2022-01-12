@@ -9,7 +9,7 @@ public class Event implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "event_id", nullable = false, updatable = false)
     private long id;
 
     @Column(name = "date")
