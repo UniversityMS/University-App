@@ -34,7 +34,7 @@ public class StudentController {
         List<Student> students = studentService.getAllStudents();
         model.addAttribute("students", students);
 
-        return "student/employeeList.html";
+        return "student/studentList.html";
     }
 
     @GetMapping("/find/{id}")
