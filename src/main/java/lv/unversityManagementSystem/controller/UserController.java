@@ -9,13 +9,14 @@ import lv.unversityManagementSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<User>> gelAllUsers() {
+    public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }

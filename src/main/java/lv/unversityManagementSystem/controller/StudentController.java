@@ -9,6 +9,7 @@ import lv.unversityManagementSystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("/students")
 public class StudentController {
     private final StudentService studentService;
@@ -27,7 +28,7 @@ public class StudentController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Student>> gelAllStudents() {
+    public ResponseEntity<List<Student>> getAllStudents() {
         List<Student> students = studentService.getAllStudents();
         return new ResponseEntity<>(students, HttpStatus.OK);
     }

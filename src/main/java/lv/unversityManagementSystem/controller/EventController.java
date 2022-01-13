@@ -6,6 +6,7 @@ import lv.unversityManagementSystem.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("/events")
 public class EventController {
     private final EventService eventService;
@@ -24,7 +25,7 @@ public class EventController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Event>> gelAllEvents() {
+    public ResponseEntity<List<Event>> getAllEvents() {
         List<Event> events = eventService.getAllEvents();
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
