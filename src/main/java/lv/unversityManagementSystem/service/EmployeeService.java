@@ -31,6 +31,10 @@ public class EmployeeService {
         return employeeRepository.findEmployeeById(id).orElseThrow(() -> new DataWithThisIdNotFoundException("Employee" +
                 " by id " + id + " was not found!"));
     }
+    public Employee findEmployeeByName(String name) {
+        return employeeRepository.findEmployeeByName(name).orElseThrow(() -> new DataWithThisIdNotFoundException("Employee" +
+                " by name " + name + " was not found!"));
+    }
 
     public void deleteEmployee(Long id) {
         employeeRepository.deleteEmployeeById(id);

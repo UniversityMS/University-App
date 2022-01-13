@@ -44,6 +44,14 @@ public class EmployeeController {
         return "employee/viewEmployee.html";
     }
 
+    @GetMapping("/find")
+    public String getEmployeeByName(@RequestParam String name, Model model) {
+        Employee employee = employeeService.findEmployeeByName(name);
+        model.addAttribute("employee", employee);
+
+        return "employee/viewEmployee.html";
+    }
+
     @PostMapping("/add")
     public List<Employee> addEmployee(@RequestBody Employee employee) {
         employee.setUsername(UsernameGeneration.getEmployeeUsername(employee));
