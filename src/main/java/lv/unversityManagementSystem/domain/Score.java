@@ -15,11 +15,11 @@ public class Score implements Serializable {
     @Column(name = "subject")
     private String subject;
 
-    @Column(name = "employee_id")
-    private long employee;
+    @ManyToOne
+    private Employee employee;
 
-    @Column(name = "student_id")
-    private String student;
+    @ManyToOne
+    private Student student;
 
     @Column(name = "score")
     private int score;
@@ -30,7 +30,7 @@ public class Score implements Serializable {
     public Score() {
     }
 
-    public Score(long id, String subject, long employee, String student, int score, String date) {
+    public Score(long id, String subject, Employee employee, Student student, int score, String date) {
         this.id = id;
         this.subject = subject;
         this.employee = employee;
@@ -55,19 +55,19 @@ public class Score implements Serializable {
         this.subject = subject;
     }
 
-    public long getEmployee() {
+    public Employee getEmployee() {
         return employee;
     }
 
-    public void setEmployee(long employee) {
+    public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 
-    public String getStudent() {
+    public Student getStudent() {
         return student;
     }
 
-    public void setStudent(String student) {
+    public void setStudent(Student student) {
         this.student = student;
     }
 
