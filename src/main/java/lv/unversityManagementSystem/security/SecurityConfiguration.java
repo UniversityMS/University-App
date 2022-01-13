@@ -30,22 +30,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password(getPasswordEncoder().encode("password")).roles("USER")
-                .and()
-                .withUser("admin").password(getPasswordEncoder() .encode("admin")).roles("ADMIN");
-//        auth.userDetailsService(userDetailsService);
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .antMatchers("admin").hasRole("ADMIN")  //maybe need to change role on hasAuthority
-                .antMatchers("/lecturer").hasAnyRole("ADMIN", "LECTURER")
-                .antMatchers("/student").hasAnyRole("ADMIN", "LECTURER", "STUDENT")
-                .antMatchers("/").permitAll()
-                .and().formLogin();
+                .antMatchers("/").hasAnyAuthority("ADMIN", "LECTURER", "STUDENT")
+                .antMatchers("/all").hasAnyAuthority("ADMIN", "LECTURER", "STUDENT")
+                .antMatchers("/find/{id}").hasAnyAuthority("ADMIN", "LECTURER", "STUDENT")
+                .antMatchers("/add").hasAnyAuthority("ADMIN")
+                .antMatchers("/update").hasAnyAuthority("ADMIN")
+                .antMatchers("/delete/{id}").hasAnyAuthority("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().permitAll()
+                .and()
+                .logout().permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
+//        http.csrf().disable();
+//        http.headers().frameOptions().disable();
+
     }
 
     @Bean

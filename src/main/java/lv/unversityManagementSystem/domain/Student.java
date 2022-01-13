@@ -2,9 +2,13 @@ package lv.unversityManagementSystem.domain;
 
 
 import org.hibernate.annotations.ColumnTransformer;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Table(name = "students")
 public class Student implements Serializable {
@@ -34,6 +38,11 @@ public class Student implements Serializable {
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "student", cascade = {CascadeType.MERGE})
+    @OrderBy("id DESC")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Score> myScores;
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
