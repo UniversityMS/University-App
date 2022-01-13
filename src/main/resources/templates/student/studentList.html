@@ -28,7 +28,7 @@
          <div class="card m-b-30">
             <div class="card-body row">
                <div class="col-6">
-                  <a th:href="${student.id}"><img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt="" class="img-fluid rounded-circle w-60"></a>
+                  <a th:href="${student.studentId}"><img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt="" class="img-fluid rounded-circle w-60"></a>
                </div>
                <div class="col-6 card-title align-self-center mb-0">
                   <h5 th:if="${student.name}" th:text="${student.name}"></h5>
