@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -28,9 +29,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Employee>> getAllEmployees() {  //ResponseEntity and List are generic, need to specify what type of data is going to be.
+    public String getAllEmployees(Model model) {
         List<Employee> employees = employeeService.getAllEmployees();
-        return new ResponseEntity<>(employees, HttpStatus.OK);  //http status for users let to know that everything is OK
+        model.addAttribute("employees", employees);
+        return "employeeList/employeeList.html";
     }
 
     @GetMapping("/find/{id}")
