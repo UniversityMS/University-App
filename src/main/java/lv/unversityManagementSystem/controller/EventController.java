@@ -31,7 +31,7 @@ public class EventController {
         List<Event> events = eventService.getAllEvents();
         model.addAttribute("events", events);
 
-        return "employee/eventList.html";
+        return "event/eventList.html";
     }
 
     @GetMapping("/find/{id}")
