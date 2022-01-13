@@ -1,6 +1,7 @@
 package lv.unversityManagementSystem.controller;
 
 
+import lv.unversityManagementSystem.domain.Employee;
 import lv.unversityManagementSystem.domain.Event;
 import lv.unversityManagementSystem.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -25,9 +27,11 @@ public class EventController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Event>> getAllEvents() {
+    public String getAllEvents(Model model) {
         List<Event> events = eventService.getAllEvents();
-        return new ResponseEntity<>(events, HttpStatus.OK);
+        model.addAttribute("events", events);
+
+        return "employee/employeeList.html";
     }
 
     @GetMapping("/find/{id}")

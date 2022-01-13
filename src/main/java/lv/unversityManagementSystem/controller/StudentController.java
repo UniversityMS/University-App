@@ -1,6 +1,7 @@
 package lv.unversityManagementSystem.controller;
 
 
+import lv.unversityManagementSystem.domain.Employee;
 import lv.unversityManagementSystem.login.PasswordGeneration;
 import lv.unversityManagementSystem.login.UsernameGeneration;
 import lv.unversityManagementSystem.domain.Role;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -28,9 +30,11 @@ public class StudentController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Student>> getAllStudents() {
+    public String getAllStudents(Model model) {
         List<Student> students = studentService.getAllStudents();
-        return new ResponseEntity<>(students, HttpStatus.OK);
+        model.addAttribute("students", students);
+
+        return "student/employeeList.html";
     }
 
     @GetMapping("/find/{id}")

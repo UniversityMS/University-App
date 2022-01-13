@@ -32,7 +32,8 @@ public class EmployeeController {
     public String getAllEmployees(Model model) {
         List<Employee> employees = employeeService.getAllEmployees();
         model.addAttribute("employees", employees);
-        return "employeeList/employeeList.html";
+
+        return "employee/employeeList.html";
     }
 
     @GetMapping("/find/{id}")
