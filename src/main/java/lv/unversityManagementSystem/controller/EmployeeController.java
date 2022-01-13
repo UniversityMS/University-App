@@ -33,13 +33,15 @@ public class EmployeeController {
         List<Employee> employees = employeeService.getAllEmployees();
         model.addAttribute("employees", employees);
 
-        return "employee/employeeList.html";
+        return "employees/employeeList.html";
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id) {
+    @GetMapping("/{id}")
+    public String getEmployeeById(@PathVariable long id, Model model) {
         Employee employee = employeeService.findEmployeeById(id);
-        return new ResponseEntity<>(employee, HttpStatus.OK);
+        model.addAttribute("employee", employee);
+
+        return "employee/viewEmployee.html";
     }
 
     @PostMapping("/add")

@@ -1,11 +1,10 @@
 package lv.unversityManagementSystem.controller;
 
 
-import lv.unversityManagementSystem.domain.Employee;
-import lv.unversityManagementSystem.login.PasswordGeneration;
-import lv.unversityManagementSystem.login.UsernameGeneration;
 import lv.unversityManagementSystem.domain.Role;
 import lv.unversityManagementSystem.domain.Student;
+import lv.unversityManagementSystem.login.PasswordGeneration;
+import lv.unversityManagementSystem.login.UsernameGeneration;
 import lv.unversityManagementSystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,13 +33,15 @@ public class StudentController {
         List<Student> students = studentService.getAllStudents();
         model.addAttribute("students", students);
 
-        return "student/studentList.html";
+        return "students/studentList.html";
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable("id") Long id) {
+    @GetMapping("/{id}")
+    public String getStudentById(@PathVariable long id, Model model) {
         Student student = studentService.findStudentById(id);
-        return new ResponseEntity<>(student, HttpStatus.OK);
+        model.addAttribute("student", student);
+
+        return "student/viewStudent.html";
     }
 
     @PostMapping("/add")
