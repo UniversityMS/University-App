@@ -57,8 +57,8 @@
     </form>
 
     <div class="text-right mt-3">
-        <button type="button" class="btn btn-primary" th:onclick="@{student/edit}">Save changes</button>&nbsp;
-        <button type="button" class="btn btn-default" th:onClick="history.back()">Cancel</button>
+        <button th:type="button" th:class="btn btn-primary" th:onclick="@{student/edit}">Save changes</button>&nbsp;
+        <button th:type="button" th:class="btn btn-default" th:onClick="history.back()">Cancel</button>
       </div>
 </div>
     </body>
