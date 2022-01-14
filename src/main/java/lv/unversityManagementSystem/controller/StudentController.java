@@ -71,6 +71,6 @@ public class StudentController {
         List<Student> students = studentService.getAllStudents();
         model.addAttribute("students", students);
 
-        return "student/studentList.html";
+        return "redirect:/students/all";
     }
 }
