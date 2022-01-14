@@ -25,6 +25,9 @@ public class StudentService {
     public Student editStudent(Student student) {
         return studentRepository.save(student);
     }
+    public Student updateStudent(Student student) {
+        return studentRepository.save(student);
+    }
 
     public Student findStudentById(Long id) {
         return studentRepository.findStudentById(id).orElseThrow(() -> new DataWithThisIdNotFoundException("Student" +
