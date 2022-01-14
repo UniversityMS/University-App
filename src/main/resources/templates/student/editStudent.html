@@ -7,7 +7,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" style="color:rgb(245, 241, 247);" href="/">D&L University</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
@@ -17,20 +16,24 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/students/}">Show Student List</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/students/} + ${student.id}">View Student</a>
+                </li>
+                <li class="nav-item active">
                     <a class="nav-link" th:href="@{/students/delete/} + ${student.id}">Delete Student</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-
-    <form class="form-horizontal" method="post" th:action="@{/students/save}" th:object="${student}">
+    <form class="form-horizontal md-6" method="post" th:action="@{/students/update}" th:object="${student}">
+        <input type="text" id="id" th:value="${student.id}" th:field="*{id}" hidden>
         <div class="col-md-3">
             <div class="text-center">
-                <a th:href="${student.id}"></a><img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt=""
-                    class="img-fluid rounded-circle w-60">
-                <h6>Upload a different photo...</h6>
-                <input type="file" class="form-control">
+                <img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt="" class="img-fluid rounded-circle w-60">
+                <input id="imgUrl" th:class="form-control" th:type="text" th:field="*{imgUrl}" th:value="${student.imgUrl}">
             </div>
         </div>
         <br><br>
@@ -41,33 +44,52 @@
             <div class="form-group">
                 <label class="col-lg-3 control-label">Name:</label>
                 <div class="col-lg-8">
-                    <input th:class="form-control" th:type="text" th:value="${student.name}">
+                    <input id="name" th:class="form-control" th:type="text" th:field="*{name}" th:value="${student.name}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-3 control-label">Surname:</label>
                 <div class="col-lg-8">
-                    <input th:class="form-control" th:type="text" th:value="${student.surname}">
+                    <input id="surname" th:class="form-control" th:type="text" th:field="*{surname}" th:value="${student.surname}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-3 control-label">Date Of Birth:</label>
                 <div class="col-lg-8">
-                    <input th:class="form-control" th:type="text" th:value="${student.dateOfBirth}">
+                    <input id="dateOfBirth" th:class="form-control" th:type="text" th:field="*{dateOfBirth}" th:value="${student.dateOfBirth}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Faculty</label>
+                <div class="col-lg-8">
+                    <input id="faculty" th:class="form-control" th:type="text"  th:field="*{faculty}" th:value="${student.faculty}" readonly>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-3 control-label">Role</label>
                 <div class="col-lg-8">
-                    <input th:class="form-control" th:type="text" th:value="${student.role}">
+                    <input id="role" th:class="form-control" th:type="text"  th:field="*{role}" th:value="${student.role}" readonly>
                 </div>
             </div>
 
-            <div class="text-right mt-3">
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Username</label>
+                <div class="col-lg-8">
+                    <input id="username" th:class="form-control" th:type="text"  th:field="*{username}" th:value="${student.username}" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Password</label>
+                <div class="col-lg-8">
+                    <input id="password" th:class="form-control" th:type="password"  th:field="*{password}" th:value="${student.password}" required>
+                </div>
+            </div>
+
+            <div class="text-center mt-3">
                 <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
                 <button type="button" class="btn btn-default" th:onClick="history.back()">Cancel</button>
             </div>
         </div>
     </form>
-    </div>
 </body>

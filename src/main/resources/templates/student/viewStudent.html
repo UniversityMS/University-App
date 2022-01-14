@@ -1,50 +1,85 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-   <title>View Student</title>
-   <link th:href="@{/studentList.css}" rel="stylesheet">
+    <title>View Student</title>
+    <link th:href="@{/editUser.css}" rel="stylesheet">
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-   <a class="navbar-brand" style="color:rgb(245, 241, 247);" href="/">D&L University</a>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
-           aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-   </button>
-   <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav ml-auto">
-       <li class="nav-item active">
-          <a class="nav-link" th:href="@{/students/edit/} + ${student.id}">Edit Student</a>
-       </li>
-    </ul>
- </div> 
-</nav>
-<div class="container" id="main-container">
-    <div class="row">
-          <div class="card m-b-30">
-             <div class="card-body row">
-                <div class="col-6">
-                </div>
-                <div class="col-6 card-title align-self-center mb-0">
-                    <a th:href="${student.id}"><img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt="" class="img-fluid rounded-circle w-60"></a>
-                   <h5 th:if="${student.name}" th:text="${student.name}"></h5>
-                </div>
-                <div class="col-6 card-title align-self-center mb-0">
-                    <h5 th:if="${student.surname}" th:text="${student.surname}"></h5>
-                 </div>
-             </div>
-             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i class="fa fa-envelope float-right"></i><span th:if="${student.dateOfBirth}" th:text="${student.dateOfBirth}"></span></li>
-             </ul>
-             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i class="fa fa-envelope float-right"></i><span th:if="${student.role}" th:text="${student.role}"></span></li>
-             </ul>
-          </div>
-        </div> 
+    <a class="navbar-brand" style="color:rgb(245, 241, 247);" href="/">D&L University</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/students/}">Show Student List</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/students/edit/} + ${student.id}">Edit Student</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/students/delete/} + ${student.id}">Delete Student</a>
+            </li>
+        </ul>
     </div>
- </div>
+</nav>
 
- <form>
-    <input type="button" style="font-size: 10px" value="Back to student list" onclick="history.back()">
- </form>
- </body>
+<div class="form-horizontal" th:object="${student}">
+    <div class="col-md-3">
+        <div class="text-center">
+            <img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt="" class="img-fluid rounded-circle w-60">
+        </div>
+    </div>
+    <br><br>
+    <div class="col-md-9 personal-info">
+
+        <h3>Personal info</h3>
+
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Name:</label>
+            <div class="col-lg-8">
+                <input id="name" th:class="form-control" th:value="${student.name}" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Surname:</label>
+            <div class="col-lg-8">
+                <input id="surname" th:class="form-control" th:value="${student.surname}" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Date Of Birth:</label>
+            <div class="col-lg-8">
+                <input id="dateOfBirth" th:class="form-control" th:value="${student.dateOfBirth}" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Faculty</label>
+            <div class="col-lg-8">
+                <input id="faculty" th:class="form-control" th:value="${student.faculty}" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Role</label>
+            <div class="col-lg-8">
+                <input id="role" th:class="form-control" th:value="${student.role}" readonly>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Username</label>
+            <div class="col-lg-8">
+                <input id="username" th:class="form-control" th:value="${student.username}" readonly>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <button type="button" class="btn btn-default" th:onClick="history.back()">Return</button>
+        </div>
+    </div>
+</div>
+</body>

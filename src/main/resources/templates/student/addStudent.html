@@ -1,65 +1,68 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-   <title>Add Student</title>
-   <link th:href="@{/editUser.css}" rel="stylesheet">
+  <title>Add Student</title>
+  <link th:href="@{/editUser.css}" rel="stylesheet">
 </head>
+
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" style="color:rgb(245, 241, 247);" href="/">D&L University</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
-            aria-expanded="false" aria-label="Toggle navigation">
-       <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+      aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-
- </nav>
-
-
- <div class="col-md-3">
-    <div class="text-center">
-        <img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt="" class="img-fluid rounded-circle w-60">
-      <h6>Upload a photo...</h6>
-      <input type="file" class="form-control">
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/students/}">Show Student List</a>
+        </li>
+      </ul>
     </div>
-  </div>
+  </nav>
 
+  <form class="form-horizontal md-6" method="post" th:action="@{/students/save}" th:object="${student}">
+    <div class="col-md-9 personal-info">
 
+      <h3>Personal info</h3>
 
-<div class="col-md-9 personal-info">
-    
-    <h3>Personal info</h3>
-    
-    <form class="form-horizontal" role="form">
       <div class="form-group">
         <label class="col-lg-3 control-label">Name:</label>
         <div class="col-lg-8">
-          <input th:class="form-control" th:type="text" th:value="${student.name}">
+          <input id="name" th:class="form-control" th:type="text" th:field="*{name}" required>
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">Surname:</label>
         <div class="col-lg-8">
-          <input th:class="form-control" th:type="text" th:value="${student.surname}">
+          <input id="surname" th:class="form-control" th:type="text" th:field="*{surname}" required>
         </div>
       </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Image Url:</label>
+        <div class="col-lg-8">
+          <input id="imgUrl" th:class="form-control" th:type="text" th:field="*{imgUrl}">
+        </div>
+      </div>
+
       <div class="form-group">
         <label class="col-lg-3 control-label">Date Of Birth:</label>
         <div class="col-lg-8">
-          <input th:class="form-control" th:type="text" th:value="${student.dateOfBirth}">
+          <input id="dateOfBirth" th:class="form-control" th:type="text" th:field="*{dateOfBirth}" required>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-3 control-label">Role</label>
+        <label class="col-lg-3 control-label">Faculty</label>
         <div class="col-lg-8">
-          <input th:class="form-control" th:type="text" th:value="${student.role}">
+          <input id="faculty" th:class="form-control" th:type="text" th:field="*{faculty}" required>
         </div>
       </div>
-    </form>
 
-    <div class="text-right mt-3">
-        <button type="button" class="btn btn-primary" th:onclick="@{/students/add}">Add student</button>&nbsp;
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
         <button type="button" class="btn btn-default" th:onClick="history.back()">Cancel</button>
       </div>
-</div>
-    </body>
+    </div>
+  </form>
+</body>
