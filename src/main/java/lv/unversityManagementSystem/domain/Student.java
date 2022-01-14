@@ -25,7 +25,9 @@ public class Student implements Serializable {
     private String surname;
 
     @Column(name = "faculty")
-    private String faculty;
+    @Enumerated(EnumType.STRING)
+    @ColumnTransformer(read = "UPPER(faculty)", write = "LOWER(?)")
+    private Faculty faculty;
 
     @Column(name = "date_of_birth")
     private String dateOfBirth;
@@ -50,7 +52,7 @@ public class Student implements Serializable {
     private Role role;
 
 
-    public Student(long id, String name, String surname, String faculty, String dateOfBirth, String imgUrl,
+    public Student(long id, String name, String surname, Faculty faculty, String dateOfBirth, String imgUrl,
                    String username, String password, Role role) {
         this.id = id;
         this.name = name;
@@ -90,11 +92,11 @@ public class Student implements Serializable {
         this.surname = surname;
     }
 
-    public String getFaculty() {
+    public Faculty getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(String faculty) {
+    public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
 
