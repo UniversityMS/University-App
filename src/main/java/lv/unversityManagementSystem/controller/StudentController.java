@@ -23,6 +23,8 @@ import java.util.List;
 public class StudentController {
     private final StudentService studentService;
 
+
+
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
@@ -55,10 +57,13 @@ public class StudentController {
         return lst;
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
-        Student updateStudent = studentService.updateStudent(student);
-        return new ResponseEntity<>(updateStudent, HttpStatus.OK);
+    @PutMapping("/edit/{id}")
+    public String editStudent(@PathVariable long id, Model model) {
+        Student student= studentService.findStudentById(id);
+//        student = studentService.editStudent(student);
+        model.addAttribute("student", student);
+
+        return "student/editStudent.html";
     }
 
     @Transactional

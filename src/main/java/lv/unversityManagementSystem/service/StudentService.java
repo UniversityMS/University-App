@@ -22,7 +22,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student updateStudent(Student student) {
+    public Student editStudent(Student student) {
         return studentRepository.save(student);
     }
 
