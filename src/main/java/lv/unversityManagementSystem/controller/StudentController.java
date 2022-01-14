@@ -66,6 +66,7 @@ public class StudentController {
 
         return "student/editStudent.html";
     }
+
     @PutMapping("/update")
     public String updateStudent(@RequestBody Student student, Model model) {
         Student updateStudent = studentService.updateStudent(student);
@@ -73,10 +74,12 @@ public class StudentController {
 
         return "student/editStudent";}
 
-    @Transactional
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<?> deleteStudent(@PathVariable("id") Long id) {
+    @GetMapping("delete/{id}")
+    public String deleteStudent(@PathVariable("id") Long id, Model model) {
         studentService.deleteStudent(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        List<Student> students = studentService.getAllStudents();
+        model.addAttribute("students", students);
+
+        return "student/viewStudent";
     }
 }
