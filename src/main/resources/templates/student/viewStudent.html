@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>View Student</title>
+   <link th:href="@{/studentList.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <a class="navbar-brand" style="color:rgb(245, 241, 247);" href="/">D&L University</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+           aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+   </button>
+</nav>
+<div class="container" id="main-container">
+    <div class="row">
+          <div class="card m-b-30">
+             <div class="card-body row">
+                <div class="col-6">
+                   <a th:href="${student.id}"><img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt="" class="img-fluid rounded-circle w-60"></a>
+                </div>
+                <div class="col-6 card-title align-self-center mb-0">
+                   <h5 th:if="${student.name}" th:text="${student.name}"></h5>
+                </div>
+                <div class="col-6 card-title align-self-center mb-0">
+                    <h5 th:if="${student.surname}" th:text="${student.surname}"></h5>
+                 </div>
+             </div>
+             <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="fa fa-envelope float-right"></i><span th:if="${student.dateOfBirth}" th:text="${student.dateOfBirth}"></span></li>
+             </ul>
+             <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="fa fa-envelope float-right"></i><span th:if="${student.role}" th:text="${student.role}"></span></li>
+             </ul>
+          </div>
+        </div> 
+    </div>
+ </div>
+
+ <form>
+    <input type="button" style="font-size: 10px" value="Back to student list" onclick="history.back()">
+ </form>
+ </body>
