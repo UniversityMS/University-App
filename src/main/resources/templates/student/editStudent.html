@@ -12,6 +12,7 @@
             aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
     </button>
+
  </nav>
 
 
@@ -57,8 +58,8 @@
     </form>
 
     <div class="text-right mt-3">
-        <button th:type="button" th:class="btn btn-primary" th:onclick="@{student/edit}">Save changes</button>&nbsp;
-        <button th:type="button" th:class="btn btn-default" th:onClick="history.back()">Cancel</button>
+        <button type="button" class="btn btn-primary" th:onclick="@{students/edit}">Save changes</button>&nbsp;
+        <button type="button" class="btn btn-default" th:onClick="history.back()">Cancel</button>
       </div>
 </div>
     </body>
