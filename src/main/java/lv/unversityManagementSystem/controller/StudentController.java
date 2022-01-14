@@ -57,7 +57,7 @@ public class StudentController {
         return lst;
     }
 
-    @PutMapping("/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String editStudent(@PathVariable long id, Model model) {
         Student student= studentService.findStudentById(id);
 //        student = studentService.editStudent(student);
