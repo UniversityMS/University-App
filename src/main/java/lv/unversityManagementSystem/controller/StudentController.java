@@ -1,6 +1,7 @@
 package lv.unversityManagementSystem.controller;
 
 
+import lv.unversityManagementSystem.domain.Employee;
 import lv.unversityManagementSystem.domain.Role;
 import lv.unversityManagementSystem.domain.Student;
 import lv.unversityManagementSystem.login.PasswordGeneration;
@@ -65,9 +66,15 @@ public class StudentController {
 
         return "student/editStudent.html";
     }
+    @PutMapping("/update")
+    public String updateStudent(@RequestBody Student student, Model model) {
+        Student updateStudent = studentService.updateStudent(student);
+        model.addAttribute("student", student);
+
+        return "student/editStudent";}
 
     @Transactional
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<?> deleteStudent(@PathVariable("id") Long id) {
         studentService.deleteStudent(id);
         return new ResponseEntity<>(HttpStatus.OK);
