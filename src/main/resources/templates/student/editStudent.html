@@ -24,7 +24,7 @@
     </nav>
 
 
-    <form class="form-horizontal" method="post" th:action="@{/students/save}">
+    <form class="form-horizontal" method="post" th:action="@{/students/save}" th:object="${student}">
         <div class="col-md-3">
             <div class="text-center">
                 <a th:href="${student.id}"></a><img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt=""
