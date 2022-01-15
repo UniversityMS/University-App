@@ -1,6 +1,7 @@
 package lv.unversityManagementSystem.service;
 
 
+import lv.unversityManagementSystem.domain.Student;
 import lv.unversityManagementSystem.exception.DataWithThisIdNotFoundException;
 import lv.unversityManagementSystem.domain.Employee;
 import lv.unversityManagementSystem.repository.EmployeeRepository;
@@ -36,8 +37,13 @@ public class EmployeeService {
                 " by name " + name + " was not found!"));
     }
 
+    public Employee findEmployeeBySurname(String surname) {
+        return employeeRepository.findEmployeeBySurname(surname).orElseThrow(() -> new DataWithThisIdNotFoundException("Employee" +
+                " by surname " + surname + " was not found!"));
+    }
+
     public void deleteEmployee(Long id) {
-        employeeRepository.deleteEmployeeById(id);
+        employeeRepository.deleteById(id);
     }
 
     public Employee save(Employee employee) {
