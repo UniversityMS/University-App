@@ -42,9 +42,8 @@ public class Student implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "student", cascade = {CascadeType.MERGE})
-    @OrderBy("id DESC")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Score> myScores;
+    private List<Score> scores;
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
@@ -138,6 +137,10 @@ public class Student implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public List<Score> getScores() {
+        return scores;
     }
 
     @Override
