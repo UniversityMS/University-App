@@ -26,6 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/*.css", "/*.csv").permitAll()
                 .antMatchers("/lecturers").hasAnyRole("ADMIN", "LECTURER")
                 .antMatchers("/students").hasAnyRole("ADMIN", "LECTURER", "STUDENT")
                 .antMatchers("/students/add", "/students/delete", "students/edit").hasRole("ADMIN")
@@ -39,11 +40,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
-    }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/*.css", "/*.csv");
     }
 
     @Bean
