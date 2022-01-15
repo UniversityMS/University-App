@@ -1,22 +1,13 @@
 package lv.unversityManagementSystem.controller;
 
 
-import lv.unversityManagementSystem.domain.Role;
 import lv.unversityManagementSystem.domain.Score;
-import lv.unversityManagementSystem.domain.Student;
-import lv.unversityManagementSystem.login.PasswordGeneration;
-import lv.unversityManagementSystem.login.UsernameGeneration;
 import lv.unversityManagementSystem.repository.ScoreRepository;
 import lv.unversityManagementSystem.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -45,7 +36,7 @@ public class ScoreController {
         Score score = scoreService.findScoreById(id);
         model.addAttribute("score", score);
 
-        return "score/viewScore";
+        return "score/viewScore.html";
     }
 
     @GetMapping("/find")
