@@ -3,7 +3,7 @@
 
 <head>
     <title>Edit Student</title>
-    <link th:href="@{/editUser.css}" rel="stylesheet">
+    <link th:href="@{/studentList.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -23,6 +23,11 @@
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{/students/delete/} + ${student.id}">Delete Student</a>
+                </li>
+                <li class="nav-item active">
+                    <form name="logoutForm" th:action="@{/logout}" method="post">
+                        <button class="btn btn-alert text-white" type="submit">Sign Out</button>
+                    </form>
                 </li>
             </ul>
         </div>

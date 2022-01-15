@@ -3,7 +3,7 @@
 
 <head>
     <title>View New Employee Info</title>
-    <link th:href="@{/editUser.css}" rel="stylesheet">
+    <link th:href="@{/employeeList.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -18,6 +18,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{/employees/}">Show Employee List</a>
                 </li>
+                <li class="nav-item active">
+                    <form name="logoutForm" th:action="@{/logout}" method="post">
+                        <button class="btn btn-alert text-white" type="submit">Sign Out</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>
@@ -25,7 +30,8 @@
     <div class="form-horizontal" th:object="${employee}">
         <div class="col-md-3">
             <div class="text-center">
-                <img th:if="${employee.imgUrl}" th:src="${employee.imgUrl}" alt="" class="img-fluid rounded-circle w-60">
+                <img th:if="${employee.imgUrl}" th:src="${employee.imgUrl}" alt=""
+                    class="img-fluid rounded-circle w-60">
             </div>
         </div>
         <br><br>
