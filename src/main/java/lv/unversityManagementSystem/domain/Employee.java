@@ -4,14 +4,17 @@ package lv.unversityManagementSystem.domain;
 import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "employees")
-public class Employee implements Serializable {   //serializable helps to transform this java class into different
+public class Employee implements Serializable, UserDetails {   //serializable helps to transform this java class into different
     // type of stream.
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,17 +51,6 @@ public class Employee implements Serializable {   //serializable helps to transf
 
     public Employee() {
 
-    }
-
-    public Employee(long id, String name, String surname, String dateOfBirth, String imgUrl, String username, String password, Role role) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.dateOfBirth = dateOfBirth;
-        this.imgUrl = imgUrl;
-        this.username = username;
-        this.password = password;
-        this.role = role;
     }
 
     public long getId() {
@@ -105,8 +97,33 @@ public class Employee implements Serializable {   //serializable helps to transf
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     public String getPassword() {

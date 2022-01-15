@@ -6,27 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginPageController {
 
+    @GetMapping("/login")
+    public String login(){
+        return ("login/login.html");
+    }
+
     @GetMapping("/")
-    public String loginHomepage(){
-        return ("greeting.html");
+    public String dashboard(){
+        return ("dashboard/dashboard.html");
     }
-
-    @GetMapping("/admin")
-    public String admin(){
-        return ("<h1>Welcome Admin</h1>");
-    }
-
-    @GetMapping("/lecturer")
-    public String lecturer(){
-        return ("<h1>Welcome Lecturer</h1>");
-    }
-
-    @GetMapping("/student")
-    public String student(){
-        return ("<h1>Welcome Student</h1>");
-    }
-
-
-
-
 }

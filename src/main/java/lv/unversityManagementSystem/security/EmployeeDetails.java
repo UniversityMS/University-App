@@ -1,18 +1,14 @@
 package lv.unversityManagementSystem.security;
 
-
 import lv.unversityManagementSystem.domain.Employee;
 import lv.unversityManagementSystem.domain.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 import java.util.*;
 import java.util.stream.Collectors;
 
-
-public class MyUserDetails implements UserDetails {
-
+public class EmployeeDetails implements UserDetails {
     private Long id;
     private String name;
     private String surname;
@@ -20,14 +16,7 @@ public class MyUserDetails implements UserDetails {
     private String password;
     private List<GrantedAuthority> role;
 
-    public MyUserDetails() {
-    }
-
-    public MyUserDetails(String username) {
-        this.username = username;
-    }
-
-    public MyUserDetails(Employee employee){
+    public EmployeeDetails(Employee employee){
         this.id = employee.getId();
         this.name = employee.getName();
         this.surname = employee.getSurname();
@@ -81,10 +70,10 @@ public class MyUserDetails implements UserDetails {
         this.password = password;
     }
 
-  @Override
-   public Collection<? extends GrantedAuthority> getAuthorities(){
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities(){
         return role;
-   }
+    }
 
     @Override
     public boolean isAccountNonExpired() {

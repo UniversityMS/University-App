@@ -1,53 +1,71 @@
 package lv.unversityManagementSystem.security;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
     @Autowired
     UserDetailsService userDetailsService;
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/lecturers").hasAnyRole("ADMIN", "LECTURER")
+                .antMatchers("/students").hasAnyRole("ADMIN", "LECTURER", "STUDENT")
+                .antMatchers("/students/add", "/students/delete", "students/edit").hasRole("ADMIN")
+                .antMatchers("/employees/add", "/employees/delete", "employees/edit").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/authenticateTheUser")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/.css", "/.csv");
+    }
+
     @Bean
-    public DaoAuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(getPasswordEncoder());
-        return authProvider;
+    @Override
+    public UserDetailsService userDetailsService() {
+        UserDetails user =
+                User.withDefaultPasswordEncoder()
+                        .username("user")
+                        .password("password")
+                        .roles("USER")
+                        .build();
+
+        return new InMemoryUserDetailsManager(user);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password(getPasswordEncoder().encode("password")).roles("USER")
-                .and()
-                .withUser("admin").password(getPasswordEncoder() .encode("admin")).roles("ADMIN");
-//        auth.userDetailsService(userDetailsService);
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()
-                .antMatchers("admin").hasRole("ADMIN")  //maybe need to change role on hasAuthority
-                .antMatchers("/lecturer").hasAnyRole("ADMIN", "LECTURER")
-                .antMatchers("/student").hasAnyRole("ADMIN", "LECTURER", "STUDENT")
-                .antMatchers("/").permitAll()
-                .and().formLogin();
+        auth.userDetailsService(userDetailsService);
     }
 
     @Bean
-    public PasswordEncoder getPasswordEncoder() { return NoOpPasswordEncoder.getInstance(); }
+    public PasswordEncoder getPasswordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
 }
