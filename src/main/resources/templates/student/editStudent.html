@@ -33,7 +33,8 @@
         <div class="col-md-3">
             <div class="text-center">
                 <img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt="" class="img-fluid rounded-circle w-60">
-                <input id="imgUrl" th:class="form-control" th:type="text" th:field="*{imgUrl}" th:value="${student.imgUrl}">
+                <input id="imgUrl" th:class="form-control" th:type="text" th:field="*{imgUrl}"
+                    th:value="${student.imgUrl}">
             </div>
         </div>
         <br><br>
@@ -44,45 +45,50 @@
             <div class="form-group">
                 <label class="col-lg-3 control-label">Name:</label>
                 <div class="col-lg-8">
-                    <input id="name" th:class="form-control" th:type="text" th:field="*{name}" th:value="${student.name}">
+                    <input id="name" th:class="form-control" th:type="text" th:field="*{name}"
+                        th:value="${student.name}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-3 control-label">Surname:</label>
                 <div class="col-lg-8">
-                    <input id="surname" th:class="form-control" th:type="text" th:field="*{surname}" th:value="${student.surname}">
+                    <input id="surname" th:class="form-control" th:type="text" th:field="*{surname}"
+                        th:value="${student.surname}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-3 control-label">Date Of Birth:</label>
                 <div class="col-lg-8">
-                    <input id="dateOfBirth" th:class="form-control" th:type="text" th:field="*{dateOfBirth}" th:value="${student.dateOfBirth}" required>
+                    <input id="dateOfBirth" th:class="form-control" th:type="text" th:field="*{dateOfBirth}"
+                        th:value="${student.dateOfBirth}" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-3 control-label">Faculty</label>
                 <div class="col-lg-8">
-                    <input id="faculty" th:class="form-control" th:type="text"  th:field="*{faculty}" th:value="${student.faculty}" readonly>
+                    <input id="faculty" th:class="form-control" th:type="text" th:field="*{faculty}"
+                        th:value="${student.faculty}" readonly>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-3 control-label">Role</label>
                 <div class="col-lg-8">
-                    <input id="role" th:class="form-control" th:type="text"  th:field="*{role}" th:value="${student.role}" readonly>
+                    <input id="role" th:class="form-control" th:type="text" th:field="*{role}"
+                        th:value="${student.role}" readonly>
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="col-lg-3 control-label">Username</label>
                 <div class="col-lg-8">
-                    <input id="username" th:class="form-control" th:type="text"  th:field="*{username}" th:value="${student.username}" required>
+                    <input id="username" th:class="form-control" th:type="text" th:field="*{username}"
+                        th:value="${student.username}" required>
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="col-lg-3 control-label">Password</label>
                 <div class="col-lg-8">
-                    <input id="password" th:class="form-control" th:type="password"  th:field="*{password}" th:value="${student.password}" required>
+                    <input id="password" th:class="form-control" th:type="password" th:field="*{password}"
+                        th:value="${student.password}" required>
                 </div>
             </div>
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Add Employee</title>
+  <link th:href="@{/editUser.css}" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:rgb(245, 241, 247);" href="/">D&L University</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+      aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/employees/}">Show Employee List</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <form class="form-horizontal md-6" method="post" th:action="@{/employees/save}" th:object="${employee}">
+    <div class="col-md-9 personal-info">
+
+      <h3>Personal info</h3>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Name:</label>
+        <div class="col-lg-8">
+          <input id="name" th:class="form-control" th:type="text" th:field="*{name}" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Surname:</label>
+        <div class="col-lg-8">
+          <input id="surname" th:class="form-control" th:type="text" th:field="*{surname}" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Image Url:</label>
+        <div class="col-lg-8">
+          <input id="imgUrl" th:class="form-control" th:type="text" th:field="*{imgUrl}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Date Of Birth:</label>
+        <div class="col-lg-8">
+          <input id="dateOfBirth" th:class="form-control" th:type="text" th:field="*{dateOfBirth}" required>
+        </div>
+      </div>
+
+
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
+        <button type="button" class="btn btn-default" th:onClick="history.back()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</body>

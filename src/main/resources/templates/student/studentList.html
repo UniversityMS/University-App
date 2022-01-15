@@ -1,46 +1,51 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+
 <head>
    <title>Student list</title>
    <link th:href="@{/studentList.css}" rel="stylesheet">
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-   <a class="navbar-brand" style="color:rgb(245, 241, 247);" href="/">D&L University</a>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
-           aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-   </button>
-   <div class="collapse navbar-collapse" id="navbarColor02">
-      <ul class="navbar-nav ml-auto">
-         <li class="nav-item active">
-            <a class="nav-link" href="/students/add">Add Student</a>
-         </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0" th:action="@{/student/find}">
-         <input type="search" name="name" id="searchName" class="form-control mr-sm-2" placeholder="Search students..." required>
-      </form>
-   </div>
-</nav>
-<div class="container" id="main-container">
-   <div class="row">
-      <div th:each="student :${students}" class="col-md-6 col-xl-3">
-         <div class="card m-b-30">
-            <div class="card-body row">
-               <div class="col-6">
-                  <img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt="" class="img-fluid rounded-circle w-60">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" style="color:rgb(245, 241, 247);" href="/">D&L University</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+         aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor02">
+         <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+               <a class="nav-link" href="/students/add">Add Student</a>
+            </li>
+         </ul>
+         <form class="form-inline my-2 my-lg-0" th:action="@{/student/find}">
+            <input type="search" name="name" id="searchName" class="form-control mr-sm-2"
+               placeholder="Search students..." required>
+         </form>
+      </div>
+   </nav>
+   <div class="container" id="main-container">
+      <div class="row">
+         <div th:each="student :${students}" class="col-md-6 col-xl-3">
+            <div class="card m-b-30">
+               <div class="card-body row">
+                  <div class="col-6">
+                     <img th:if="${student.imgUrl}" th:src="${student.imgUrl}" alt=""
+                        class="img-fluid rounded-circle w-60">
+                  </div>
+                  <div class="col-6 card-title align-self-center mb-0">
+                     <h5 th:if="${student.name}" th:text="${student.name}"></h5>
+                     <h5 th:if="${student.surname}" th:text="${student.surname}"></h5>
+                     <a class="text-primary" th:href="${student.id}">View</a>
+                  </div>
                </div>
-               <div class="col-6 card-title align-self-center mb-0">
-                  <h5 th:if="${student.name}" th:text="${student.name}"></h5>
-                  <h5 th:if="${student.surname}" th:text="${student.surname}"></h5>
-                  <a class="text-primary" th:href="${student.id}">View</a>
-               </div>
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><i class="fa fa-envelope float-right"></i><span
+                        th:if="${student.dateOfBirth}" th:text="${student.dateOfBirth}"></span></li>
+               </ul>
             </div>
-            <ul class="list-group list-group-flush">
-               <li class="list-group-item"><i class="fa fa-envelope float-right"></i><span th:if="${student.dateOfBirth}" th:text="${student.dateOfBirth}"></span></li>
-            </ul>
          </div>
       </div>
    </div>
-</div>
 </body>

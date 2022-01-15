@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>View New Employee Info</title>
+    <link th:href="@{/editUser.css}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" style="color:rgb(245, 241, 247);" href="/">D&L University</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/employees/}">Show Employee List</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="form-horizontal" th:object="${employee}">
+        <div class="col-md-3">
+            <div class="text-center">
+                <img th:if="${employee.imgUrl}" th:src="${employee.imgUrl}" alt="" class="img-fluid rounded-circle w-60">
+            </div>
+        </div>
+        <br><br>
+        <div class="col-md-9 personal-info">
+
+            <h3>New employee succesfully added!</h3>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Username:</label>
+                <div class="col-lg-8">
+                    <input id="name" th:class="form-control" th:value="${employee.username}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Password:</label>
+                <div class="col-lg-8">
+                    <input id="surname" th:class="form-control" th:value="${employee.password}" readonly>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button type="button" class="btn btn-default"
+                    onclick="window.location.href = '/employees/';">Return</button>
+            </div>
+        </div>
+    </div>
+</body>
