@@ -32,9 +32,9 @@
                 </li>
                 <li class="nav-item active">
                     <form name="logoutForm" th:action="@{/logout}" method="post">
-                       <button class="btn btn-alert text-white" type="submit">Sign Out</button>
+                        <button class="btn btn-alert text-white" type="submit">Sign Out</button>
                     </form>
-                 </li>
+                </li>
             </ul>
         </div>
     </nav>
@@ -85,6 +85,13 @@
                 <div class="col-lg-8">
                     <input id="username" th:class="form-control" th:value="${student.username}" readonly>
                 </div>
+            </div>
+
+            <div th:each="score :${student.scores}" class="col-md-6 col-xl-3">
+                <span th:text="${score.id}"></span>
+                <span th:text="${score.subject}"></span>
+                <span th:text="${score.score}"></span>
+                <span th:text="${score.date}"></span>
             </div>
 
             <div class="text-center mt-3">
