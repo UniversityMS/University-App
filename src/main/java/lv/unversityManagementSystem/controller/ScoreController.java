@@ -1,13 +1,19 @@
 package lv.unversityManagementSystem.controller;
 
 
+import lv.unversityManagementSystem.domain.Role;
 import lv.unversityManagementSystem.domain.Score;
+import lv.unversityManagementSystem.domain.Student;
+import lv.unversityManagementSystem.login.PasswordGeneration;
+import lv.unversityManagementSystem.login.UsernameGeneration;
+import lv.unversityManagementSystem.repository.ScoreRepository;
 import lv.unversityManagementSystem.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,42 +24,82 @@ import java.util.List;
 @RequestMapping("/scores")
 public class ScoreController {
     private final ScoreService scoreService;
+    private final ScoreRepository scoreRepository;
 
     @Autowired
-    public ScoreController(ScoreService scoreService) {
+    public ScoreController(ScoreService scoreService, ScoreRepository scoreRepository) {
         this.scoreService = scoreService;
+        this.scoreRepository = scoreRepository;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Score>> getAllScores() {
+    @GetMapping("/")
+    public String getAllScores(Model model) {
         List<Score> scores = scoreService.getAllScores();
-        return new ResponseEntity<>(scores, HttpStatus.OK);
+        model.addAttribute("scores", scores);
+
+        return "score/scoreList.html";
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Score> getScoreById(@PathVariable("id") Long id) {
+    @GetMapping("/{id}")
+    public String getScoreById(@PathVariable long id, Model model) {
         Score score = scoreService.findScoreById(id);
-        return new ResponseEntity<>(score, HttpStatus.OK);
+        model.addAttribute("score", score);
+
+        return "score/viewScore";
     }
 
-    @PostMapping("/add")
-    public List<Score> addScore(@RequestBody Score score) {
-        scoreService.save(score);
-        List<Score> lst = new ArrayList<>();
-        lst.add(score);
-        return lst;
+    @GetMapping("/find")
+    public String getScoreBySubject(@RequestParam String subject, Model model) {
+        List<Score> scores = scoreService.findScoreBySubject(subject);
+
+        if (scores.isEmpty()) {
+            return "redirect:/scores/";
+        }
+
+        model.addAttribute("scores", scores);
+
+        return "score/scoreList.html";
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Score> updateScore(@RequestBody Score score) {
+    @GetMapping("/add")
+    public String addScore(Model model) {
+        Score score = new Score();
+        model.addAttribute("score", score);
+
+        return "score/addScore.html";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editScore(@PathVariable long id, Model model) {
+        Score score = scoreService.findScoreById(id);
+        model.addAttribute("score", score);
+
+        return "score/editScore.html";
+    }
+
+    @PostMapping("/update")
+    public String updateScore(Score score, Model model) {
         Score updateScore = scoreService.updateScore(score);
-        return new ResponseEntity<>(updateScore, HttpStatus.OK);
+        score = scoreService.findScoreById(updateScore.getId());
+        model.addAttribute("score", score);
+
+        return "redirect:/scores/";
     }
 
-    @Transactional
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteScore(@PathVariable("id") Long id) {
+    @PostMapping("/save")
+    public String saveScore(Score score, Model model) {
+        scoreRepository.save(score);
+        model.addAttribute("score", score);
+
+        return "score/newScore.html";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteScore(@PathVariable Long id, Model model) {
         scoreService.deleteScore(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        List<Score> scores = scoreService.getAllScores();
+        model.addAttribute("scores", scores);
+
+        return "redirect:/scores/";
     }
 }

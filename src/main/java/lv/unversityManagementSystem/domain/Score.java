@@ -1,5 +1,7 @@
 package lv.unversityManagementSystem.domain;
 
+import org.hibernate.annotations.ColumnTransformer;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,7 +15,9 @@ public class Score implements Serializable {
     private long id;
 
     @Column(name = "subject")
-    private String subject;
+    @Enumerated(EnumType.STRING)
+    @ColumnTransformer(read = "UPPER(subject)", write = "LOWER(?)")
+    private Subject subject;
 
     @ManyToOne
     private Employee employee;
@@ -30,7 +34,7 @@ public class Score implements Serializable {
     public Score() {
     }
 
-    public Score(long id, String subject, Employee employee, Student student, int score, String date) {
+    public Score(long id, Subject subject, Employee employee, Student student, int score, String date) {
         this.id = id;
         this.subject = subject;
         this.employee = employee;
@@ -47,11 +51,11 @@ public class Score implements Serializable {
         this.id = id;
     }
 
-    public String getSubject() {
+    public Subject getSubject() {
         return subject;
     }
 
-    public void setSubject(String subject) {
+    public void setSubject(Subject subject) {
         this.subject = subject;
     }
 

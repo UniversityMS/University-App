@@ -33,7 +33,11 @@ public class ScoreService {
     }
 
     public void deleteScore(Long id) {
-        scoreRepository.deleteScoreById(id);
+        scoreRepository.deleteById(id);
+    }
+
+    public List<Score> findScoreBySubject(String subject){
+        return scoreRepository.findScoreBySubject(subject);
     }
 
     public Score save(Score score) {
