@@ -1,12 +1,13 @@
 package lv.unversityManagementSystem.security;
 
 import lv.unversityManagementSystem.domain.Employee;
-import lv.unversityManagementSystem.domain.Role;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class EmployeeDetails implements UserDetails {
     private Long id;
@@ -22,10 +23,10 @@ public class EmployeeDetails implements UserDetails {
         this.surname = employee.getSurname();
         this.username = employee.getUsername();
         this.password = employee.getPassword();
-        List<String> roleAsString = Arrays.stream(Role.values())
-                .map(Role::name)
-                .collect(Collectors.toList());
 
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(employee.getRole().name()));
+        this.role = authorities;
     }
 
     public Long getId() {
