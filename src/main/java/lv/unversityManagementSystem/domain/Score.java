@@ -19,10 +19,12 @@ public class Score implements Serializable {
     @ColumnTransformer(read = "UPPER(subject)", write = "LOWER(?)")
     private Subject subject;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="employee_id")
     private Employee employee;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="student_id")
     private Student student;
 
     @Column(name = "score")
