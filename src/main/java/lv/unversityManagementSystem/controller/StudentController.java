@@ -1,6 +1,5 @@
 package lv.unversityManagementSystem.controller;
 
-import lv.unversityManagementSystem.domain.Employee;
 import lv.unversityManagementSystem.domain.Role;
 import lv.unversityManagementSystem.domain.Student;
 import lv.unversityManagementSystem.login.PasswordGeneration;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -43,22 +43,23 @@ public class StudentController {
 
     @GetMapping("/find")
     public String getStudentByName(@RequestParam String name, Model model) {
-        Student student = studentService.findStudentByName(name);
-        model.addAttribute("student", student);
+        List<Student> students = studentService.findStudentByName(name);
 
-        return "student/viewStudent.html";
-    }
+        if (students.isEmpty()) {
+            students = studentService.findStudentBySurname(name);
+        }
 
-    @GetMapping("/find")
-    public String getStudentBySurname(@RequestParam String surname, Model model) {
-        Student student = studentService.findStudentBySurname(surname);
-        model.addAttribute("student", student);
+        if (students.isEmpty()) {
+            return "redirect:/students/";
+        }
 
-        return "student/viewStudent.html";
+        model.addAttribute("students", students);
+
+        return "student/studentList.html";
     }
 
     @GetMapping("/add")
-    public String addStudent(Model model){
+    public String addStudent(Model model) {
         Student student = new Student();
         model.addAttribute("student", student);
 
@@ -67,7 +68,7 @@ public class StudentController {
 
     @GetMapping("/edit/{id}")
     public String editStudent(@PathVariable long id, Model model) {
-        Student student= studentService.findStudentById(id);
+        Student student = studentService.findStudentById(id);
         model.addAttribute("student", student);
 
         return "student/editStudent.html";

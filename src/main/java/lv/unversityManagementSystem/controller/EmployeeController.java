@@ -1,7 +1,6 @@
 package lv.unversityManagementSystem.controller;
 
 
-import lv.unversityManagementSystem.domain.Student;
 import lv.unversityManagementSystem.login.PasswordGeneration;
 import lv.unversityManagementSystem.login.UsernameGeneration;
 import lv.unversityManagementSystem.domain.Employee;
@@ -9,14 +8,10 @@ import lv.unversityManagementSystem.domain.Role;
 import lv.unversityManagementSystem.repository.EmployeeRepository;
 import lv.unversityManagementSystem.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -50,22 +45,23 @@ public class EmployeeController {
 
     @GetMapping("/find")
     public String getEmployeeByName(@RequestParam String name, Model model) {
-        Employee employee = employeeService.findEmployeeByName(name);
-        model.addAttribute("employee", employee);
+        List<Employee> employees = employeeService.findEmployeeByName(name);
 
-        return "employee/viewEmployee.html";
-    }
+        if (employees.isEmpty()) {
+            employees = employeeService.findEmployeeBySurname(name);
+        }
 
-    @GetMapping("/find")
-    public String getEmployeeBySurname(@RequestParam String surname, Model model) {
-        Employee employee = employeeService.findEmployeeBySurname(surname);
-        model.addAttribute("employee", employee);
+        if (employees.isEmpty()) {
+            return "redirect:/employees/";
+        }
 
-        return "employee/viewEmployee.html";
+        model.addAttribute("employees", employees);
+
+        return "employee/employeeList.html";
     }
 
     @GetMapping("/add")
-    public String addEmployee(Model model){
+    public String addEmployee(Model model) {
         Employee employee = new Employee();
         model.addAttribute("employee", employee);
 
@@ -74,7 +70,7 @@ public class EmployeeController {
 
     @GetMapping("/edit/{id}")
     public String editEmployee(@PathVariable long id, Model model) {
-        Employee employee= employeeService.findEmployeeById(id);
+        Employee employee = employeeService.findEmployeeById(id);
         model.addAttribute("employee", employee);
 
         return "employee/editEmployee.html";
@@ -86,7 +82,7 @@ public class EmployeeController {
         employee = employeeService.findEmployeeById(updateEmployee.getId());
         model.addAttribute("employee", employee);
 
-        return "redirect:/employee/";
+        return "redirect:/employees/";
     }
 
     @PostMapping("/save")

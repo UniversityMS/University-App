@@ -54,7 +54,10 @@
       <div class="form-group">
         <label class="col-lg-3 control-label">Faculty</label>
         <div class="col-lg-8">
-          <input id="faculty" th:class="form-control" th:type="text" th:field="*{faculty}" required>
+          <select th:class="form-control" th:field="*{faculty}">
+            <option th:href="faculty : ${T(lv.unversityManagementSystem.domain.Faculty).values()}" th:value="${faculty}" th:text="${faculty}">
+            </option>
+          </select>
         </div>
       </div>
 
