@@ -1,5 +1,6 @@
 package lv.unversityManagementSystem.controller;
 
+import lv.unversityManagementSystem.domain.Employee;
 import lv.unversityManagementSystem.domain.Role;
 import lv.unversityManagementSystem.domain.Student;
 import lv.unversityManagementSystem.login.PasswordGeneration;
@@ -35,6 +36,22 @@ public class StudentController {
     @GetMapping("/{id}")
     public String getStudentById(@PathVariable long id, Model model) {
         Student student = studentService.findStudentById(id);
+        model.addAttribute("student", student);
+
+        return "student/viewStudent.html";
+    }
+
+    @GetMapping("/find")
+    public String getStudentByName(@RequestParam String name, Model model) {
+        Student student = studentService.findStudentByName(name);
+        model.addAttribute("student", student);
+
+        return "student/viewStudent.html";
+    }
+
+    @GetMapping("/find")
+    public String getStudentBySurname(@RequestParam String surname, Model model) {
+        Student student = studentService.findStudentBySurname(surname);
         model.addAttribute("student", student);
 
         return "student/viewStudent.html";
