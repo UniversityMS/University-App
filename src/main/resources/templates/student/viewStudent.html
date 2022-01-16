@@ -87,13 +87,33 @@
                 </div>
             </div>
 
-            <div th:each="score :${student.scores}" class="col-md-6 col-xl-3">
-                <span th:text="${score.id}"></span>
-                <span th:text="${score.subject}"></span>
-                <span th:text="${score.score}"></span>
-                <span th:text="${score.date}"></span>
-            </div>
-
+            <table class="table user-list">
+                <thead>
+                    <tr>
+                        <th><span>Subject</span></th>
+                        <th><span>Score %</span></th>
+                        <th><span>Submition Date</span></th>
+                        <th><span>Score Added By </span></th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="score :${student.scores}" class="col-md-6 col-xl-3">
+                        <td>
+                            <span th:text="${score.subject}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${score.score}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${score.date}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${score.employee.name} + ' ' + ${score.employee.surname}"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="text-center mt-3">
                 <button type="button" class="btn btn-default" th:onClick="history.back()">Return</button>
             </div>
