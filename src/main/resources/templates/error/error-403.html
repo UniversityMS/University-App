@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>403 - Access Forbidden</title>
+    <link th:href="@{/studentList.css}" rel="stylesheet">
 </head>
+
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:rgb(245, 241, 247);" href="/">D&L University</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <form name="logoutForm" th:action="@{/logout}" method="post">
+                    <button class="btn btn-alert text-white" type="submit">Sign Out</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container text-center">
+    <div class="row vcenter" style="margin-top: 20%;">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1 style="font-size: 9em; letter-spacing: 2px;">Oops!</h1>
+                <h2 style="font-size: 3em;">403 Permission Denied</h2>
+                <div class="error-details">
+                    Sorry, you do not have access to this page, please contact your administrator
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
