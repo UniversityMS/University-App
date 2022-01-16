@@ -6,6 +6,7 @@ import lv.unversityManagementSystem.login.UsernameGeneration;
 import lv.unversityManagementSystem.domain.Employee;
 import lv.unversityManagementSystem.domain.Role;
 import lv.unversityManagementSystem.repository.EmployeeRepository;
+import lv.unversityManagementSystem.repository.ScoreRepository;
 import lv.unversityManagementSystem.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,13 @@ import java.util.List;
 public class EmployeeController {
     private final EmployeeService employeeService;
     private final EmployeeRepository employeeRepository;
+    private final ScoreRepository scoreRepository;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService, EmployeeRepository employeeRepository) {
+    public EmployeeController(EmployeeService employeeService, EmployeeRepository employeeRepository, ScoreRepository scoreRepository) {
         this.employeeService = employeeService;
         this.employeeRepository = employeeRepository;
+        this.scoreRepository = scoreRepository;
     }
 
     @GetMapping("/")
