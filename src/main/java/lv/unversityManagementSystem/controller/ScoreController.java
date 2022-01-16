@@ -2,13 +2,18 @@ package lv.unversityManagementSystem.controller;
 
 
 import lv.unversityManagementSystem.domain.Score;
+import lv.unversityManagementSystem.domain.Student;
+import lv.unversityManagementSystem.repository.EmployeeRepository;
 import lv.unversityManagementSystem.repository.ScoreRepository;
+import lv.unversityManagementSystem.repository.StudentRepository;
 import lv.unversityManagementSystem.service.ScoreService;
+import lv.unversityManagementSystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -16,11 +21,15 @@ import java.util.List;
 public class ScoreController {
     private final ScoreService scoreService;
     private final ScoreRepository scoreRepository;
+    private final StudentService studentService;
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
-    public ScoreController(ScoreService scoreService, ScoreRepository scoreRepository) {
+    public ScoreController(ScoreService scoreService, ScoreRepository scoreRepository, StudentService studentService, EmployeeRepository employeeRepository) {
         this.scoreService = scoreService;
         this.scoreRepository = scoreRepository;
+        this.studentService = studentService;
+        this.employeeRepository = employeeRepository;
     }
 
     @GetMapping("/")
@@ -52,9 +61,11 @@ public class ScoreController {
         return "score/scoreList.html";
     }
 
-    @GetMapping("/add")
-    public String addScore(Model model) {
+    @GetMapping("/add/{id}")
+    public String addScore(@PathVariable long id, Model model) {
+        Student student = studentService.findStudentById(id);
         Score score = new Score();
+        score.setStudent(student);
         model.addAttribute("score", score);
 
         return "score/addScore.html";

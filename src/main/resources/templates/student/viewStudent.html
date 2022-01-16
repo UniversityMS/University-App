@@ -25,7 +25,7 @@
                     <a class="nav-link" th:href="@{/students/delete/} + ${student.id}">Delete Student</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/scores/add/}">Add Score</a>
+                    <a class="nav-link" th:href="@{/scores/add/} + ${student.id}">Add Score</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{/scores/}">View Scores</a>

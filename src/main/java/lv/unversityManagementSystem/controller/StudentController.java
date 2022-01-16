@@ -4,6 +4,7 @@ import lv.unversityManagementSystem.domain.Role;
 import lv.unversityManagementSystem.domain.Student;
 import lv.unversityManagementSystem.login.PasswordGeneration;
 import lv.unversityManagementSystem.login.UsernameGeneration;
+import lv.unversityManagementSystem.repository.ScoreRepository;
 import lv.unversityManagementSystem.repository.StudentRepository;
 import lv.unversityManagementSystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,14 @@ import java.util.List;
 public class StudentController {
     private final StudentService studentService;
     private final StudentRepository studentRepository;
+    private final ScoreRepository scoreRepository;
+
 
     @Autowired
-    public StudentController(StudentService studentService, StudentRepository studentRepository) {
+    public StudentController(StudentService studentService, StudentRepository studentRepository, ScoreRepository scoreRepository) {
         this.studentService = studentService;
         this.studentRepository = studentRepository;
+        this.scoreRepository = scoreRepository;
     }
 
     @GetMapping("/")
