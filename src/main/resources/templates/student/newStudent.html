@@ -15,6 +15,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav ml-auto">
+                <li>
+                    <span class="btn btn-alert text-white">[[${#request.userPrincipal.principal.username}]]</span>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{/students/}">Show Student List</a>
                 </li>

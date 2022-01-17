@@ -1,19 +1,22 @@
 package lv.unversityManagementSystem.controller;
 
 
+import lv.unversityManagementSystem.domain.Employee;
 import lv.unversityManagementSystem.domain.Score;
 import lv.unversityManagementSystem.domain.Student;
 import lv.unversityManagementSystem.repository.EmployeeRepository;
 import lv.unversityManagementSystem.repository.ScoreRepository;
-import lv.unversityManagementSystem.repository.StudentRepository;
+import lv.unversityManagementSystem.service.EmployeeService;
 import lv.unversityManagementSystem.service.ScoreService;
 import lv.unversityManagementSystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -23,13 +26,16 @@ public class ScoreController {
     private final ScoreRepository scoreRepository;
     private final StudentService studentService;
     private final EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
     @Autowired
-    public ScoreController(ScoreService scoreService, ScoreRepository scoreRepository, StudentService studentService, EmployeeRepository employeeRepository) {
+    public ScoreController(ScoreService scoreService, ScoreRepository scoreRepository, StudentService studentService,
+                           EmployeeRepository employeeRepository, EmployeeService employeeService) {
         this.scoreService = scoreService;
         this.scoreRepository = scoreRepository;
         this.studentService = studentService;
         this.employeeRepository = employeeRepository;
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/")
@@ -90,10 +96,14 @@ public class ScoreController {
 
     @PostMapping("/save")
     public String saveScore(Score score, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Employee employee = employeeService.findEmployeeByUsername(currentPrincipalName);
+        score.setEmployee(employee);
         scoreRepository.save(score);
         model.addAttribute("score", score);
 
-        return "score/newScore.html";
+        return "redirect:/students/{id}/";
     }
 
     @GetMapping("/delete/{id}")
