@@ -47,4 +47,9 @@ public class EmployeeService {
     public List<Employee> findEmployeeBySurname(String surname) {
         return employeeRepository.findEmployeeBySurname(surname);
     }
+
+    public Employee findEmployeeByUsername(String username) {
+        return employeeRepository.findByUsername(username).orElseThrow(() -> new DataWithThisIdNotFoundException("Employee" +
+                " by username " + username + " was not found!"));
+    }
 }
