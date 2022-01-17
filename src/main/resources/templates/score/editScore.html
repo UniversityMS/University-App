@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Add Score</title>
+    <title>Edit Score</title>
     <link th:href="@{/studentList.css}" rel="stylesheet">
 </head>
 
@@ -21,7 +21,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{/students/}">Show Student List</a>
                 </li>
-                <li class="nav-item active">
+                                       <li class="nav-item active">
                     <form name="logoutForm" th:action="@{/logout}" method="post">
                         <button class="btn btn-alert text-white" type="submit">Sign Out</button>
                     </form>
@@ -30,24 +30,20 @@
         </div>
     </nav>
 
-    <form class="form-horizontal md-6" method="post" th:action="@{/scores/save}" th:object="${score}" 3>
+    <form class="form-horizontal md-6" method="post" th:action="@{/scores/update}" th:object="${score}">
+        <input type="text" id="id" th:value="${score.id}" th:field="*{id}" hidden>
+        
         <div class="col-md-9 personal-info">
 
-            <!-- Add student's info here -->
-
-            <h3>Add Score</h3>
+            <h3>Personal info</h3>
 
             <div class="form-group">
-                <label class="col-lg-3 control-label">Subject</label>
+                <label class="col-lg-3 control-label">Subject:</label>
                 <div class="col-lg-8">
-                    <select th:class="form-control" th:field="*{subject}">
-                        <option th:each="subject : ${T(lv.unversityManagementSystem.domain.Subject).values()}"
-                            th:value="${subject}" th:text="${subject}">
-                        </option>
-                    </select>
+                    <input th:each="subject : ${T(lv.unversityManagementSystem.domain.Subject).values()}"
+                    th:value="${subject}" th:text="${subject}">
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="col-lg-3 control-label">Add score:</label>
                 <div class="col-lg-8">
@@ -60,9 +56,7 @@
                     <input id="date" th:class="form-control" th:type="text" th:field="*{date}" required>
                 </div>
             </div>
-
-            <input type="text" id="id" th:value="${score.student.id}" th:field="*{student}" hidden>
-
+           
             <div class="text-center mt-3">
                 <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
                 <button type="button" class="btn btn-default" th:onClick="history.back()">Cancel</button>

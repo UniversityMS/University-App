@@ -97,6 +97,8 @@
                         <th><span>Score %</span></th>
                         <th><span>Submition Date</span></th>
                         <th><span>Score Added By </span></th>
+                        <th><span>Edit</span></th>
+                        <th><span>Delete</span></th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -112,8 +114,17 @@
                             <span th:text="${score.date}"></span>
                         </td>
                         <td>
-                            <span th:text="${#request.userPrincipal.principal.username}"></span>
+                            <span th:text="${score.employee.name} + ' ' + ${score.employee.surname}"></span>
                         </td>
+
+                        <td>
+                            <button type="button" th:href="@{/scores/edit/} + ${score.id}"> <img th:src="@{edit-regular.svg}"></button> 
+                        </td>
+
+                        <td>
+                            <button type="button" th:href="@{/scores/delete/} + ${score.id}"> <img th:src="@{times-solid.svg}"></button> 
+                        </td>
+
                     </tr>
                 </tbody>
             </table>

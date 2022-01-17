@@ -27,15 +27,17 @@ public class ScoreController {
     private final StudentService studentService;
     private final EmployeeRepository employeeRepository;
     private final EmployeeService employeeService;
+    private final Score score;
 
     @Autowired
     public ScoreController(ScoreService scoreService, ScoreRepository scoreRepository, StudentService studentService,
-                           EmployeeRepository employeeRepository, EmployeeService employeeService) {
+                           EmployeeRepository employeeRepository, EmployeeService employeeService,Score score) {
         this.scoreService = scoreService;
         this.scoreRepository = scoreRepository;
         this.studentService = studentService;
         this.employeeRepository = employeeRepository;
         this.employeeService = employeeService;
+        this.score = score;
     }
 
     @GetMapping("/")
@@ -79,8 +81,15 @@ public class ScoreController {
 
     @GetMapping("/edit/{id}")
     public String editScore(@PathVariable long id, Model model) {
-        Score score = scoreService.findScoreById(id);
-        model.addAttribute("score", score);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Employee employee = employeeService.findEmployeeByUsername(currentPrincipalName);
+        if (currentPrincipalName.equals(score.getEmployee().getUsername())) {
+            Score score = scoreService.findScoreById(id);
+            model.addAttribute("score", score);
+        } else {
+            return "error/error-403.html";
+        }
 
         return "score/editScore.html";
     }
