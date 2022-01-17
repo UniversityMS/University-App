@@ -9,5 +9,5 @@ Also password and username is generating automatically after adding new user in 
 
 
 Future imrovements that can be done in this project: add more acces levels, for students who will ba able to check their marks, search marks by subject and see who edit mark and
-the date when submitted. Add posobility for lecturers to mark attendance. Make information about evvents more interactive.
+the date when submitted. Add posobility for lecturers to mark attendance. Make information about events more interactive and nice looking, maybe like a calender.
 
