@@ -27,4 +27,17 @@
         </div>
     </nav>
 
+    <div class="form-horizontal" th:object="${score}">
+        
+        <div class="col-md-9 personal-info">
+
+            <h3>Score successfully edited!</h3>
+
+            <div class="text-center mt-3">
+                <button type="button" class="btn btn-default"
+                    onclick="window.location.href = '/students/';">Return</button>
+            </div>
+        </div>
+    </div>
+
 </body>
