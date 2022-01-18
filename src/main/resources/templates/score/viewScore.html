@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>View Score</title>
+    <title>View Edited Score</title>
     <link th:href="@{/studentList.css}" rel="stylesheet">
 </head>
 
@@ -15,17 +15,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav ml-auto">
+                <li>
+                    <span class="btn btn-alert text-white">[[${#request.userPrincipal.principal.username}]]</span>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{/students/}">Show Student List</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/scores/}">Show All Scores</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/scores/edit/} + ${student.id}">Edit Score</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/scores/delete/} + ${student.id}">Delete Score</a>
                 </li>
                 <li class="nav-item active">
                     <form name="logoutForm" th:action="@{/logout}" method="post">
@@ -35,4 +29,35 @@
             </ul>
         </div>
     </nav>
+
+    <div class="form-horizontal" th:object="${score}">
+        
+        <div class="col-md-9 personal-info">
+
+            <h3>Score successfully edited!</h3>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Subject:</label>
+                <div class="col-lg-8">
+                    <input id="subject" th:class="form-control" th:value="${score.subject}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Score:</label>
+                <div class="col-lg-8">
+                    <input id="score" th:class="form-control" th:value="${score.score}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Submition date:</label>
+                <div class="col-lg-8">
+                    <input id="date" th:class="form-control" th:value="${score.date}" readonly>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button type="button" class="btn btn-default"
+                    onclick="window.location.href = '/students/';">Return</button>
+            </div>
+        </div>
+    </div>
 </body>

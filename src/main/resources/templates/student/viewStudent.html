@@ -118,13 +118,12 @@
                         </td>
 
                         <td>
-                            <button type="button" th:href="@{/scores/edit/} + ${score.id}"> <img th:src="@{edit-regular.svg}"></button> 
+                            <a th:href="@{/scores/edit/} + ${score.id}"> <img th:src="@{/edit-regular.svg}" style="width:16px; height:16px"></a> 
                         </td>
 
                         <td>
-                            <button type="button" th:href="@{/scores/delete/} + ${score.id}"> <img th:src="@{times-solid.svg}"></button> 
+                            <a th:href="@{/scores/delete/} + ${score.id}"> <img th:src="@{/times-solid.svg}" style="width:16px; height:16px"></a>
                         </td>
-
                     </tr>
                 </tbody>
             </table>

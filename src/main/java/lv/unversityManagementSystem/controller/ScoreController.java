@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Controller
@@ -25,19 +26,14 @@ public class ScoreController {
     private final ScoreService scoreService;
     private final ScoreRepository scoreRepository;
     private final StudentService studentService;
-    private final EmployeeRepository employeeRepository;
     private final EmployeeService employeeService;
-    private final Score score;
 
     @Autowired
-    public ScoreController(ScoreService scoreService, ScoreRepository scoreRepository, StudentService studentService,
-                           EmployeeRepository employeeRepository, EmployeeService employeeService,Score score) {
+    public ScoreController(ScoreService scoreService, ScoreRepository scoreRepository, StudentService studentService, EmployeeService employeeService) {
         this.scoreService = scoreService;
         this.scoreRepository = scoreRepository;
         this.studentService = studentService;
-        this.employeeRepository = employeeRepository;
         this.employeeService = employeeService;
-        this.score = score;
     }
 
     @GetMapping("/")
@@ -84,18 +80,24 @@ public class ScoreController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         Employee employee = employeeService.findEmployeeByUsername(currentPrincipalName);
-        if (currentPrincipalName.equals(score.getEmployee().getUsername())) {
-            Score score = scoreService.findScoreById(id);
+
+        Score score = scoreService.findScoreById(id);
+
+        if (Objects.equals(employee.getUsername(), score.getEmployee().getUsername())) {
             model.addAttribute("score", score);
+            return "score/editScore.html";
         } else {
             return "error/error-403.html";
         }
-
-        return "score/editScore.html";
     }
 
     @PostMapping("/update")
     public String updateScore(Score score, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Employee employee = employeeService.findEmployeeByUsername(currentPrincipalName);
+        score.setEmployee(employee);
+
         Score updateScore = scoreService.updateScore(score);
         score = scoreService.findScoreById(updateScore.getId());
         model.addAttribute("score", score);
@@ -112,7 +114,7 @@ public class ScoreController {
         scoreRepository.save(score);
         model.addAttribute("score", score);
 
-        return "redirect:/students/{id}/";
+        return "score/newScore.html";
     }
 
     @GetMapping("/delete/{id}")
@@ -121,6 +123,8 @@ public class ScoreController {
         List<Score> scores = scoreService.getAllScores();
         model.addAttribute("scores", scores);
 
-        return "redirect:/scores/";
+//        return "redirect:/scores/";
+
+        return "score/deleteScore.html";
     }
 }

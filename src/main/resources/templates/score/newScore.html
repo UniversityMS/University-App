@@ -34,8 +34,26 @@
         
         <div class="col-md-9 personal-info">
 
-            <h3>Score successfully deleted!</h3>
+            <h3>New score successfully added!</h3>
 
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Subject:</label>
+                <div class="col-lg-8">
+                    <input id="subject" th:class="form-control" th:value="${score.subject}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Score:</label>
+                <div class="col-lg-8">
+                    <input id="score" th:class="form-control" th:value="${score.score}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Submition date:</label>
+                <div class="col-lg-8">
+                    <input id="date" th:class="form-control" th:value="${score.date}" readonly>
+                </div>
+            </div>
             <div class="text-center mt-3">
                 <button type="button" class="btn btn-default"
                     onclick="window.location.href = '/students/';">Return</button>
