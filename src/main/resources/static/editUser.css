@@ -70,3 +70,7 @@ label.btn {
 .btn {
     cursor: pointer;
 }
+
+.navbar-collapse.collapse.in {
+  display: block!important;
+}

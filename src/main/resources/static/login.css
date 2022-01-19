@@ -112,3 +112,7 @@ margin-right: 25px;
   width: 40%;
   padding:20px;
 }
+
+.navbar-collapse.collapse.in {
+  display: block!important;
+}
